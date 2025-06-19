@@ -5,55 +5,63 @@
   <body>
     <center>
       <h1>Fishmaker</h1>
-      <input id="name" placeholder="NAME OF FISH">
+      <input id="name" placeholder="NAME OF FISH" name="name">
     </center>
     <div id="bone_editor">
       <center>
         <h2>Bone Editor</h2>
-        Bone Name:<input id="bonename" placeholder="NAME OF BONE" ><br>
-        x = <input id="bonex" type="number" >
-        y = <input id="boney" type="number" ><br>
-        C Variance: <input id="clockwise_variance" type="range" min="0" max="180" > <input type="number">
-        CC Variance: <input id="counter_clockwise_variance" type="range" min="0" max="180" > <input type="number">
+        <button id="addbone">+</button>
+        Bone Name: <vr> <input id="bonename" placeholder="NAME OF BONE" name="bonename"><br>
+        x = <input id="bonex" type="number" name="bonex">
+        y = <input id="boney" type="number" name="boney"><br>
+        C Variance: <input id="clockwise_variance" type="range" min="0" max="180" name="CVariance"> <input type="number" name="CVariance">
+        CC Variance: <input id="counter_clockwise_variance" type="range" min="0" max="180" name="CCVariance"> <input type="number" name="CCVariance">
+        <ul id="bone_chain" class="bonelist">
+          
+        </ul>
       </center>
     </div>
     <div id="texture_editor">
       <center>
         <h2>Texture Editor</h2>
-        Palette: <input type="file"><br>
+        Palette: <vr> <input type="file" name="palette"><br>
         <select>
           <option>Anchored Bitmap</option>
           <option>Spline</option>
         </select><br>
       </center>
         <div id="bitmap">
-          Texture: <input type="file" ><br>
-          Anchored To <select>
-            <option>Center</option>
-            <option>Bottom</option>
-          </select><br>
-          Point top <select>
-            <option>To Parent</option>
-            <option>Away from Parent</option>
-            <option>To Child</option>
-            <option>Away from Child</option>
-          </select><br>
-          Bone: <input>
+          <center>
+            Texture: <vr> <input type="file" ><br>
+            Anchored To: <vr> <select>
+              <option>Center</option>
+              <option>Bottom</option>
+            </select><br>
+            Point top: <vr> <select>
+              <option>To Parent</option>
+              <option>Away from Parent</option>
+              <option>To Child</option>
+              <option>Away from Child</option>
+            </select><br>
+            Bone: <vr> <input>
+          </center>
         <div id="spline">
-          <button>+</button>
-          Radius: <input type="number"><br>
-          Theta: <input type="range" min="0" max="180"> <input type="number"><br>
-          Bone: <input><br>
-          <ul id="spline_points" class="selector list">
-            
-          </ul>
-          Loop: <input type="checkbox">
-          Line Width: <input type="number">
-          Line Color: <select class="palatte_selector"></select>
-          Line Opacity: <input type="range" min="0" max="1"> <input type="number">
-          Fill: <input type="checkbox">
-          Fill Color: <select class="palatte_selector"></select>
-          Fill Opacity: <input type="range" min="0" max="1"> <input type="number">
+          <center>
+            <button id="addsplinepoint">+</button>
+            Radius: <vr> <input type="number" name="r"><br>
+            Theta: <vr> <input type="range" min="0" max="180"> <input type="number" name="theta"><br>
+            Bone: <vr> <input name="bone" placeholder="/"><br>
+            <ul id="spline_points" class="list">
+              
+            </ul>
+            Loop: <vr> <input type="checkbox">
+            Line Width: <vr> <input type="number">
+            Line Color: <vr> <select class="palatte_selector"></select>
+            Line Opacity: <vr> <input type="range" min="0" max="255"> <input type="number">
+            Fill: <vr> <input type="checkbox">
+            Fill Color: <vr> <select class="palatte_selector"></select>
+            Fill Opacity: <vr> <input type="range" min="0" max="255"> <input type="number">
+          </center>
         </div>
     </div>
     <canvas id="editor"></canvas>
