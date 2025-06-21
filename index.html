@@ -14,6 +14,13 @@
         border: 1px solid black;
         margin: 2px;
       }
+      div.duo{
+        display:inline-block;
+        width:50%;
+        vertical-align: top;
+        border: 1px dashed black;
+        margin: 2px;
+      }
     </style>
   </head>
   <body>
@@ -46,7 +53,7 @@
           <option>Spline</option>
         </select><br>
       </center>
-        <div id="bitmap">
+        <div id="bitmap" class="duo">
           <center>
             Texture: <!--></!--> <input type="file" ><br>
             Anchored To: <!--></!--> <select>
@@ -62,7 +69,7 @@
             Bone: <!--></!--> <input placeholder="/">
           </center>
         </div>
-        <div id="spline">
+        <div id="spline" class="duo">
           <center>
             <button id="addsplinepoint">+</button><br>
             Radius: <!--></!--> <input type="number" name="r"><br>
@@ -70,14 +77,14 @@
             Bone: <!--></!--> <input name="bone" placeholder="/"><br>
             <ul id="spline_points" class="list">
               
-            </ul>
-            Loop: <!--></!--> <input type="checkbox">
-            Line Width: <!--></!--> <input type="number">
-            Line Color: <!--></!--> <select class="palatte_selector"></select>
-            Line Opacity: <!--></!--> <input type="range" min="0" max="255" class="linked" name="line_opacity"> <input type="number" class="linked" name="line_opacity">
-            Fill: <!--></!--> <input type="checkbox">
-            Fill Color: <!--></!--> <select class="palatte_selector"></select>
-            Fill Opacity: <!--></!--> <input type="range" min="0" max="255" class="linked" name="fill_opacity"> <input type="number" class="linked" name="fill_opacity">
+            </ul><br>
+            Loop: <!--></!--> <input type="checkbox"><br>
+            Line Width: <!--></!--> <input type="number"><br>
+            Line Color: <!--></!--> <select class="palatte_selector"></select><br>
+            Line Opacity: <!--></!--> <input type="range" min="0" max="255" class="linked" name="line_opacity"> <input type="number" class="linked" name="line_opacity"><br>
+            Fill: <!--></!--> <input type="checkbox"><br>
+            Fill Color: <!--></!--> <select class="palatte_selector"></select><br>
+            Fill Opacity: <!--></!--> <input type="range" min="0" max="255" class="linked" name="fill_opacity"> <input type="number" class="linked" name="fill_opacity"><br>
           </center>
         </div>
     </div>
