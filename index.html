@@ -8,11 +8,11 @@
       <h1>Fishmaker</h1>
       <input id="name" placeholder="NAME OF FISH" name="name">
     </center>
-    <div id="bone_editor">
+    <div id="bone_editor" class="triad">
       <center>
         <h2>Bone Editor</h2>
         <button id="addbone">+</button>
-        Bone Name: <vr> <input id="bonename" placeholder="NAME OF BONE" name="bonename"><br>
+        Bone Name: <!--></!--> <input id="bonename" placeholder="NAME OF BONE" name="bonename"><br>
         x = <input id="bonex" type="number" name="bonex">
         y = <input id="boney" type="number" name="boney"><br>
         C Variance: <input id="clockwise_variance" type="range" min="0" max="180" name="CVariance"> <input type="number" name="CVariance">
@@ -22,10 +22,10 @@
         </ul>
       </center>
     </div>
-    <div id="texture_editor">
+    <div id="texture_editor" class="triad">
       <center>
         <h2>Texture Editor</h2>
-        Palette: <vr> <input type="file" name="palette"><br>
+        Palette: <!--></!--> <input type="file" name="palette"><br>
         <select>
           <option>Anchored Bitmap</option>
           <option>Spline</option>
@@ -33,37 +33,41 @@
       </center>
         <div id="bitmap">
           <center>
-            Texture: <vr> <input type="file" ><br>
-            Anchored To: <vr> <select>
+            Texture: <!--></!--> <input type="file" ><br>
+            Anchored To: <!--></!--> <select>
               <option>Center</option>
               <option>Bottom</option>
             </select><br>
-            Point top: <vr> <select>
+            Point top: <!--></!--> <select>
               <option>To Parent</option>
               <option>Away from Parent</option>
               <option>To Child</option>
               <option>Away from Child</option>
             </select><br>
-            Bone: <vr> <input>
+            Bone: <!--></!--> <input>
           </center>
+        </div>
         <div id="spline">
           <center>
             <button id="addsplinepoint">+</button>
-            Radius: <vr> <input type="number" name="r"><br>
-            Theta: <vr> <input type="range" min="0" max="180"> <input type="number" name="theta"><br>
-            Bone: <vr> <input name="bone" placeholder="/"><br>
+            Radius: <!--></!--> <input type="number" name="r"><br>
+            Theta: <!--></!--> <input type="range" min="0" max="180"><input type="number" name="theta"><br>
+            Bone: <!--></!--> <input name="bone" placeholder="/"><br>
             <ul id="spline_points" class="list">
               
             </ul>
-            Loop: <vr> <input type="checkbox">
-            Line Width: <vr> <input type="number">
-            Line Color: <vr> <select class="palatte_selector"></select>
-            Line Opacity: <vr> <input type="range" min="0" max="255"> <input type="number">
-            Fill: <vr> <input type="checkbox">
-            Fill Color: <vr> <select class="palatte_selector"></select>
-            Fill Opacity: <vr> <input type="range" min="0" max="255"> <input type="number">
+            Loop: <!--></!--> <input type="checkbox">
+            Line Width: <!--></!--> <input type="number">
+            Line Color: <!--></!--> <select class="palatte_selector"></select>
+            Line Opacity: <!--></!--> <input type="range" min="0" max="255"> <input type="number">
+            Fill: <!--></!--> <input type="checkbox">
+            Fill Color: <!--></!--> <select class="palatte_selector"></select>
+            Fill Opacity: <!--></!--> <input type="range" min="0" max="255"> <input type="number">
           </center>
         </div>
+    </div>
+    <div id="animation" class="triad">
+      
     </div>
     <canvas id="editor"></canvas>
   </body>
