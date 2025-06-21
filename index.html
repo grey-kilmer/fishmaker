@@ -20,11 +20,10 @@
     <center>
       <h1>Fishmaker</h1>
       <input id="name" placeholder="NAME OF FISH" name="name">
-    </center>
     <div id="bone_editor" class="triad">
       <center>
         <h2>Bone Editor</h2>
-        <button id="addbone">+</button>
+        <button id="addbone">+</button><br>
         Bone Name: <!--></!--> <input id="bonename" placeholder="NAME OF BONE" name="bonename"><br>
         x = <input id="bonex" type="number" name="bonex">
         y = <input id="boney" type="number" name="boney"><br>
@@ -62,7 +61,7 @@
         </div>
         <div id="spline">
           <center>
-            <button id="addsplinepoint">+</button>
+            <button id="addsplinepoint">+</button><br>
             Radius: <!--></!--> <input type="number" name="r"><br>
             Theta: <!--></!--> <input type="range" min="0" max="180"><input type="number" name="theta"><br>
             Bone: <!--></!--> <input name="bone" placeholder="/"><br>
@@ -81,10 +80,31 @@
     </div>
     <div id="animation" class="triad">
       <center>
-        <h2>Animation Definer</h2>
+        <h2>Animation & Stats Definer</h2>
+        Animation Style: <select>
+          <option>Salamander</option>
+          <option>Fish</option>
+          <option>Eel</option>
+        </select><br>
+        Bone <input placeholder="/">
+        Starts: <select>
+          <option>Foot</option>
+          <option>Fin</option>
+          <option>Frill</option>
+        </select><br>
+        Speed: <input type="number">
+        Health: <input type="number"><br>
+        Minimum Depth: <input type="range" min="0" max="15">
+        Maximum Depth: <input type="range" min="0" max="15"><br>
+        Preffers Bottom Feeding?: <input type="checkbox"><br>
+        <button>+</button>
+        Abilities: <ul>
+          
+        </ul>
       </center>
     </div>
     <canvas id="editor"></canvas>
+    </center>
   </body>
   <script src="script.js"></script>
 </html>
