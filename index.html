@@ -27,10 +27,11 @@
         <h2>Bone Editor</h2>
         <button id="addbone">+</button><br>
         Bone Name: <!--></!--> <input id="bonename" placeholder="NAME OF BONE" name="bonename"><br>
+        Parent Bone: <!--></!--> <input placeholder="/">
         x = <input id="bonex" type="number" name="bonex">
         y = <input id="boney" type="number" name="boney"><br>
-        C Variance: <input id="clockwise_variance" type="range" min="0" max="180" name="CVariance"> <input type="number" name="CVariance">
-        CC Variance: <input id="counter_clockwise_variance" type="range" min="0" max="180" name="CCVariance"> <input type="number" name="CCVariance">
+        C Variance: <input id="clockwise_variance" type="range" min="0" max="180" name="CVariance"> <input type="number" name="CVariance"><br>
+        CC Variance: <input id="counter_clockwise_variance" type="range" min="0" max="180" name="CCVariance"> <input type="number" name="CCVariance"><br>
         <ul id="bone_chain" class="bonelist">
           
         </ul>
@@ -58,7 +59,7 @@
               <option>To Child</option>
               <option>Away from Child</option>
             </select><br>
-            Bone: <!--></!--> <input>
+            Bone: <!--></!--> <input placeholder="/">
           </center>
         </div>
         <div id="spline">
