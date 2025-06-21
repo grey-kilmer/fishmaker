@@ -27,11 +27,11 @@
         <h2>Bone Editor</h2>
         <button id="addbone">+</button><br>
         Bone Name: <!--></!--> <input id="bonename" placeholder="NAME OF BONE" name="bonename"><br>
-        Parent Bone: <!--></!--> <input placeholder="/">
+        Parent Bone: <!--></!--> <input placeholder="/"><br>
         x = <input id="bonex" type="number" name="bonex">
         y = <input id="boney" type="number" name="boney"><br>
-        C Variance: <input id="clockwise_variance" type="range" min="0" max="180" name="CVariance"> <input type="number" name="CVariance"><br>
-        CC Variance: <input id="counter_clockwise_variance" type="range" min="0" max="180" name="CCVariance"> <input type="number" name="CCVariance"><br>
+        C Variance: <input id="clockwise_variance" type="range" min="0" max="180" name="CVariance" class="linked"> <input type="number" name="CVariance" class="linked"><br>
+        CC Variance: <input id="counter_clockwise_variance" type="range" min="0" max="180" name="CCVariance" class="linked"> <input type="number" name="CCVariance" class="linked"><br>
         <ul id="bone_chain" class="bonelist">
           
         </ul>
@@ -74,10 +74,10 @@
             Loop: <!--></!--> <input type="checkbox">
             Line Width: <!--></!--> <input type="number">
             Line Color: <!--></!--> <select class="palatte_selector"></select>
-            Line Opacity: <!--></!--> <input type="range" min="0" max="255"> <input type="number">
+            Line Opacity: <!--></!--> <input type="range" min="0" max="255" class="linked" name="line_opacity"> <input type="number" class="linked" name="line_opacity">
             Fill: <!--></!--> <input type="checkbox">
             Fill Color: <!--></!--> <select class="palatte_selector"></select>
-            Fill Opacity: <!--></!--> <input type="range" min="0" max="255"> <input type="number">
+            Fill Opacity: <!--></!--> <input type="range" min="0" max="255" class="linked" name="fill_opacity"> <input type="number" class="linked" name="fill_opacity">
           </center>
         </div>
     </div>
@@ -97,8 +97,8 @@
         </select><br>
         Speed: <input type="number">
         Health: <input type="number"><br>
-        Minimum Depth: <input type="range" min="0" max="15">
-        Maximum Depth: <input type="range" min="0" max="15"><br>
+        Minimum Depth: <input type="range" min="0" max="15" class="linked" name="mindepth"> <input type="number" class="linked" name="mindepth"><br>
+        Maximum Depth: <input type="range" min="0" max="15" class="linked" name="mindepth"> <input type="number" class="linked" name="mindepth"><br>
         Preffers Bottom Feeding?: <input type="checkbox"><br>
         <button>+</button>
         Abilities: <ul>
