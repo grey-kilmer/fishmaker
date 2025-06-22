@@ -32,9 +32,9 @@
     <div id="bone_editor" class="triad">
       <center>
         <h2>Bone Editor</h2>
-        <button id="addbone">+</button><br>
+        <button id="addbone" onclick="addbone()">+</button><br>
         Bone Name: <!--></!--> <input id="bonename" placeholder="NAME OF BONE" name="bonename"><br>
-        Parent Bone: <!--></!--> <input placeholder="/"><br>
+        Parent Bone: <!--></!--> <input id="parent_bone" placeholder="/"><br>
         x = <input id="bonex" type="number" name="bonex">
         y = <input id="boney" type="number" name="boney"><br>
         C Variance: <input id="clockwise_variance" type="range" min="0" max="180" name="CVariance" class="linked"> <input type="number" name="CVariance" class="linked"><br>
@@ -49,8 +49,8 @@
         <h2>Texture Editor</h2>
         Palette: <!--></!--> <input type="file" name="palette"><br>
         <select>
-          <option>Anchored Bitmap</option>
-          <option>Spline</option>
+          <option value=0>Anchored Bitmap</option>
+          <option value=1>Spline</option>
         </select><br>
       </center>
       <center>
@@ -58,14 +58,14 @@
           <center>
             Texture: <!--></!--> <input type="file" ><br>
             Anchored To: <!--></!--> <select>
-              <option>Center</option>
-              <option>Bottom</option>
+              <option value=0>Center</option>
+              <option value=1>Bottom</option>
             </select><br>
             Point top: <!--></!--> <select>
-              <option>To Parent</option>
-              <option>Away from Parent</option>
-              <option>To Child</option>
-              <option>Away from Child</option>
+              <option value=0>To Parent</option>
+              <option value=1>Away from Parent</option>
+              <option value=2>To Child</option>
+              <option value=3>Away from Child</option>
             </select><br>
             Bone: <!--></!--> <input placeholder="/">
           </center>
@@ -94,16 +94,16 @@
       <center>
         <h2>Animation & Stats Definer</h2>
         Animation Style: <select>
-          <option>Salamander</option>
-          <option>Fish</option>
-          <option>Eel</option>
+          <option value=0>Salamander</option>
+          <option value=1>Fish</option>
+          <option value=2>Eel</option>
         </select><br>
         Bone <input placeholder="/">
-        Starts: <select>
-          <option>None</option>
-          <option>Foot</option>
-          <option>Fin</option>
-          <option>Frill</option>
+        Starts: <select id="animationDefiner" on>
+          <option value=-1>None</option>
+          <option value=0>Foot</option>
+          <option value=1>Fin</option>
+          <option value=2>Frill</option>
         </select><br>
         Speed: <input type="number">
         Health: <input type="number"><br>
