@@ -14,7 +14,7 @@ var abilities=[];
 var currentBone, currentSplinePoint;
 
 function updateName(){
-  name=document.getElementByID("name").value
+  name=document.getElementById("name").value
 }
 function addBone(){
   
