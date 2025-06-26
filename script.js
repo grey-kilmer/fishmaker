@@ -5,6 +5,7 @@ var rootBone={
         "y":0,
         "child_bones":[]
     };
+var currentBone=rootBone;
 var importTextures=[];
 var textures=[];
 var animationStyle=0;
@@ -16,13 +17,15 @@ var minDepth=0;
 var prefersBottomFeeding=false;
 var abilities=[];
 
-var currentBone, currentSplinePoint;
 
 function updateName(){
   name=document.getElementById("name").value
 }
 function importTexture(){
   importTextures.push(document.getElementById("texture_import").value)
+}
+function renameBone(){
+  currentBone["name"]=document.getElementById("bonename").value
 }
 function addBone(){
   
