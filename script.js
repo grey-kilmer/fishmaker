@@ -11,7 +11,11 @@ var minDepth=0;
 var prefersBottomFeeding=false;
 var abilities=[];
 
-var currentBone, currentSplinePoint, 
+var currentBone, currentSplinePoint;
+
+function updateName(){
+  name=document.getElementByID("name").value
+}
 function addBone(){
   
 }
