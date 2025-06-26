@@ -3,8 +3,8 @@ var rootBone={
     "name":"",
     "x":0,
     "y":0,
-    "CVariance":180;
-    "CCVariance":180;
+    "CVariance":180,
+    "CCVariance":180,
     "child_bones":[]
   };
 var currentBone=rootBone;
