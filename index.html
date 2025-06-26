@@ -35,10 +35,10 @@
         <button id="addbone" onclick="addbone()">+</button><br>
         Bone Name: <!--></!--> <input id="bonename" placeholder="NAME OF BONE" name="bonename" onchange="renameBone()"><br>
         Parent Bone: <!--></!--> <input id="parent_bone" placeholder="/"><br>
-        x = <input id="bonex" type="number" name="bonex">
-        y = <input id="boney" type="number" name="boney"><br>
-        C Variance: <input id="clockwise_variance" type="range" min="0" max="180" name="CVariance" class="linked"> <input type="number" name="CVariance" class="linked"><br>
-        CC Variance: <input id="counter_clockwise_variance" type="range" min="0" max="180" name="CCVariance" class="linked"> <input type="number" name="CCVariance" class="linked"><br>
+        x = <input id="bonex" type="number" name="bonex" value="0" onchange="updateBonePosition()">
+        y = <input id="boney" type="number" name="boney" value="0" onchange="updateBonePosition()"><br>
+        C Variance: <input id="clockwise_variance" type="range" min="0" max="360" name="CVariance" class="linked" onchange="updateVariance();updateLinks()"> <input type="number" name="CVariance" class="linked" onchange="updateVariance();updateLinks()"><br>
+        CC Variance: <input id="counter_clockwise_variance" type="range" min="0" max="360" name="CCVariance" class="linked" onchange="updateVariance();updateLinks()"> <input type="number" name="CCVariance" class="linked" onchange="updateVariance();updateLinks()"><br>
         <ul id="bone_chain" class="bonelist">
           
         </ul>
