@@ -60,6 +60,7 @@ function updateLinks(){
     }
   }
 }
+updateLinks();
 //function updateBoneList
 function addBone(){
   
