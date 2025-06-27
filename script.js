@@ -42,7 +42,7 @@ function updateBonePosition(){
   currentBone["x"]=document.getElementById("bonex").value;
   currentBone["y"]=document.getElementById("boney").value;
 }
-function updateVariances(){
+function updateVariance(){
   currentBone["CVariance"]=document.getElementById("clockwise_variance").value;
   currentBone["CCVariance"]=document.getElementById("counter_clockwise_variance").value;
 }
