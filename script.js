@@ -27,7 +27,7 @@ for (var x of linkedItems){
   };
 }
 for (var x of linkedItems){
-  links[x.name]["linked_ids"].push(x);
+  links[x.name]["linked"].push(x);
 }
 function updateName(){
   name=document.getElementById("name").value;
