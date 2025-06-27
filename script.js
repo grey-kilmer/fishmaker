@@ -23,11 +23,11 @@ linkedItems=document.querySelectorAll(".linked");
 for (var x of linkedItems){
   links[x.name]={
     "last_value":x.value,
-    "linked_ids":[]
+    "linked":[]
   };
 }
 for (var x of linkedItems){
-  links[x.name]["linked_ids"].push(x.id);
+  links[x.name]["linked_ids"].push(x);
 }
 function updateName(){
   name=document.getElementById("name").value;
@@ -48,15 +48,15 @@ function updateVariances(){
 }
 function updateLinks(){
   for (var x in links){
-    var a=document.getElementById(links[x]["linked_ids"][0]).value;
-    var b=document.getElementById(links[x]["linked_ids"][1]).value;
+    var a=links[x]["linked"][0].value;
+    var b=links[x]["linked"][1].value;
     if (a!=links[x]["last_value"]){
       links[x]["last_value"]=a;
-      document.getElementById(links[x]["linked_ids"][1]).value=a;
+      links[x]["linked"][1].value=a;
     }
     else if (b!=links[x]["last_value"]){
       links[x]["last_value"]=b;
-      document.getElementById(links[x]["linked_ids"][1]).value=b;
+      links[x]["linked"][0].value=b;
     }
   }
 }
