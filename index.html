@@ -37,8 +37,8 @@
         Parent Bone: <!--></!--> <input id="parent_bone" placeholder="/"><br>
         x = <input id="bonex" type="number" name="bonex" value="0" onchange="updateBonePosition()">
         y = <input id="boney" type="number" name="boney" value="0" onchange="updateBonePosition()"><br>
-        C Variance: <input id="clockwise_variance" type="range" min="0" max="360" name="CVariance" class="linked" onchange="updateVariance();updateLinks()"> <input type="number" name="CVariance" class="linked" onchange="updateVariance();updateLinks()"><br>
-        CC Variance: <input id="counter_clockwise_variance" type="range" min="0" max="360" name="CCVariance" class="linked" onchange="updateVariance();updateLinks()"> <input type="number" name="CCVariance" class="linked" onchange="updateVariance();updateLinks()"><br>
+        C Variance: <input id="clockwise_variance" type="range" min="0" max="360" name="CVariance" class="linked" onchange="updateVariance();updateLinks()" value=0> <input type="number" name="CVariance" class="linked" onchange="updateVariance();updateLinks()" value=0><br>
+        CC Variance: <input id="counter_clockwise_variance" type="range" min="0" max="360" name="CCVariance" class="linked" onchange="updateVariance();updateLinks()" value=0> <input type="number" name="CCVariance" class="linked" onchange="updateVariance();updateLinks()" value=0><br>
         <ul id="bone_chain" class="bonelist">
           
         </ul>
