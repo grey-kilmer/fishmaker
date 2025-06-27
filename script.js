@@ -22,8 +22,8 @@ var links={};
 linkedItems=document.querySelectorAll(".linked");
 for (var x of linkedItems){
   links[x.name]={
-    "last_value":x.value;
-    "linked_ids":[];
+    "last_value":x.value,
+    "linked_ids":[]
   };
 }
 for (var x of linkedItems){
