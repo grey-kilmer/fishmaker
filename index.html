@@ -41,6 +41,7 @@
         CC Variance: <input id="counter_clockwise_variance" type="range" min="0" max="360" name="CCVariance" class="linked" oninput="updateVariance();updateLinks()" value=0> <input type="number" name="CCVariance" class="linked" onchange="updateVariance();updateLinks()" value=0><br>
         <ul id="bone_chain" class="bonelist">
           <li><button onclick="setBone('/root')">root</button></li>
+          <li>   <button onclick="setBone('/root')">root</button></li>
         </ul>
       </center>
     </div>
@@ -62,7 +63,7 @@
               <option value=1>Bottom</option>
             </select><br>
             Point top: <!--></!--> <select id="pointing_direction" onchange="updatePointingDirection()">
-              "    "<option value=0>To Parent</option>
+              <option value=0>To Parent</option>
               <option value=1>Away from Parent</option>
               <option value=2>To Child</option>
               <option value=3>Away from Child</option>
