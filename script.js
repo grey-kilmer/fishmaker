@@ -64,7 +64,7 @@ function updateLinks(){
 updateLinks();
 function updateBoneList(){
   var list=document.getElementById("bone_chain");
-  for (var child of list.childnodes){
+  for (var child of list.childNodes){
     child.remove();
   }
   updateBoneListPearl(rootBone,list,"");
