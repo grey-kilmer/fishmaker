@@ -70,6 +70,7 @@ function updateBoneList(){
   updateBoneListPearl(rootBone,list,"");
 }
 function updateBoneListPearl(bone, list, pathname){
+  console.log(bone);
   var li=document.createElement("li");
   var newPath=`${pathname}/${bone["bonename"]}`;
   li.innerHTML=`<button onclick="setBone('${newPath}')">${bone["bonename"]}</button>`;
