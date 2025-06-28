@@ -63,7 +63,11 @@ function updateLinks(){
 }
 updateLinks();
 function updateBoneList(){
-  updateBoneListPearl(root,document.getElementById("bone_chain"),"");
+  var list=document.getElementById("bone_chain");
+  for (var child of list.childnodes){
+    child.remove();
+  }
+  updateBoneListPearl(root,list,"");
 }
 function updateBoneListPearl(bone, list, pathname){
   var li=document.createElement("li");
