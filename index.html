@@ -38,7 +38,7 @@
         <button id="addbone" onclick="addBone()">+</button>
         <button id="deleteBone" onclick="deleteBone()">-</button><br>
         Bone Name: <!--></!--> <input id="bonename" value="root" name="bonename" onchange="renameBone()"><br>
-        Parent Bone: <!--></!--> <input id="parent_bone" value="/" onchange="reparentBone()"><br>
+        Parent Bone: <!--></!--> <input id="parent_bone" placeholder="/" onchange="reparentBone()"><br>
         x = <input id="bonex" type="number" name="bonex" value="0" onchange="updateBonePosition()">
         y = <input id="boney" type="number" name="boney" value="0" onchange="updateBonePosition()"><br>
         C Variance: <input id="clockwise_variance" type="range" min="0" max="360" name="CVariance" class="linked" oninput="updateVariance();updateLinks()" value=0> <input type="number" name="CVariance" class="linked" onchange="updateVariance();updateLinks()" value=0><br>
@@ -70,7 +70,7 @@
               <option value=2>To Child</option>
               <option value=3>Away from Child</option>
             </select><br>
-            Bone: <!--></!--> <input value="/" id="bitmap_bone" onchange="updateBitmapBone()">
+            Bone: <!--></!--> <input placeholder="/" id="bitmap_bone" onchange="updateBitmapBone()">
           </center>
         </div>
         <div id="spline" class="duo">
@@ -78,7 +78,7 @@
             <button id="addsplinepoint">+</button><br>
             Radius: <!--></!--> <input type="number" name="r" id="r" onchange="updateRadius()"><br>
             Theta: <!--></!--> <input type="range" min="0" max="180" class="linked" value="0" name="theta" oninput="updateLinks()" ><input type="number" name="theta" class="linked" value="0" name="theta" onchange="updateLinks()"><br>
-            Bone: <!--></!--> <input id="splinebone" value="/" onchange="updateSplineBone()"><br>
+            Bone: <!--></!--> <input id="splinebone" placeholder="/" onchange="updateSplineBone()"><br>
             <ul id="spline_points" class="list">
               
             </ul><br>
@@ -101,7 +101,7 @@
           <option value=1>Fish</option>
           <option value=2>Eel</option>
         </select><br>
-        Bone <input value="/" id="animationBone" onchange="updateAnimationBone()">
+        Bone <input placeholder="/" id="animationBone" onchange="updateAnimationBone()">
         Starts: <select id="animationDefiner" onchange="updateAnimationDefinition()">
           <option value=-1>None</option>
           <option value=0>Foot</option>
