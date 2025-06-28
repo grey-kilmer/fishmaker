@@ -92,7 +92,7 @@ function addBone(){
     "y":0,
     "CVariance":180,
     "CCVariance":180,
-    "child_bones":[]
+    "child_bones":[],
   };
   currentBone["child_bones"].push(newBone);
   currentBone=newBone;
@@ -101,11 +101,31 @@ function addBone(){
   document.getElementById("boney").value=0;
   document.getElementById("clockwise_variance").value=180;
   document.getElementById("counter_clockwise_variance").value=180;
-  document.getElementById("parent_bone").value=document.getElementById("parent_bone").value+"/"+parentName;
+  document.getElementById("parent_bone").value=document.getElementById("parent_bone").value+"/"+parentName+"/";
   updateBoneList();
 }
 function setBone(bonepath){
-  
+  var pathlist=bonepath.split("/");
+  pathlist.shift();
+  currentBone=getBone(root,pathlist);
+  pathlist.pop();
+  var parent=getBone(root,pathlist);
+  var parentName=pathlist[pathlist.length-1];
+  document.getElementById("bonename").value=currentBone["name"]
+  document.getElementById("bonex").value=currentBone["x"]
+  document.getElementById("boney").value=currentBone["y"]
+  document.getElementById("clockwise_variance").value=currentBone["CVariance"];
+  document.getElementById("counter_clockwise_variance").value=currentBone["CCVariance"];
+  document.getElementById("parent_bone").value=bonepath.slice(0,bonepath.lastIndexOf(currentBone["name"]));
+  updateBoneList();
+}
+function getBone(bone,pathlist){
+  if (pathlist.length>0){
+    for (var childBone of bone["child_bones"]){
+      if (childBone["name"]==pathlist[0]){
+        pathlist.shift()
+        return getBone(childBone,pathlist);
+  else {return bone;}
 }
 function addSplinePoint(){
   
