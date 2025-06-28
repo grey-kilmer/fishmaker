@@ -37,6 +37,7 @@ function importTexture(){
 }
 function renameBone(){
   currentBone["name"]=document.getElementById("bonename").value;
+  updateBoneList();
 }
 function updateBonePosition(){
   currentBone["x"]=document.getElementById("bonex").value;
@@ -61,8 +62,43 @@ function updateLinks(){
   }
 }
 updateLinks();
-//function updateBoneList
+function updateBoneList(){
+  updateBoneListPearl(root,document.getElementById("bone_chain"),"");
+}
+function updateBoneListPearl(bone, list, pathname){
+  var li=document.createElement("li");
+  var newPath=`${pathname}/${bone["bonename"]}`;
+  li.content=`<button onclick="setBone(${newPath})">${bone["bonename"]}</button>`;
+  list.appendChild(li);
+  if (bone["child_bones"].length>0){
+    newList=document.createElement("ul");
+    list.appendChild(newList);
+    for (var subBone of bone["child_bones"]){
+      updateBoneListPearl(subBone, newList, newPath);
+    }
+  }
+}
+updateBoneList();
 function addBone(){
+  var newBone={
+    "name":"",
+    "x":0,
+    "y":0,
+    "CVariance":180,
+    "CCVariance":180,
+    "child_bones":[]
+  };
+  currentBone["child_bones"].push(newBone);
+  currentBone=newBone;
+  document.getElementById("bonename").value="";
+  document.getElementById("bonex").value=0;
+  document.getElementById("boney").value=0;
+  document.getElementById("clockwise_variance").value=180;
+  document.getElementById("counter_clockwise_variance").value=180;
+  document.getElementById("parent_bone").value=document.getElementById("parent_bone").value+"/";
+  updateBoneList();
+}
+function setBone(bonepath){
   
 }
 function addSplinePoint(){
