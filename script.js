@@ -73,7 +73,7 @@ function updateBoneListPearl(bone, list, pathname){
   console.log(bone);
   var li=document.createElement("li");
   var newPath=`${pathname}/${bone["bonename"]}`;
-  li.innerHTML=`<button onclick="setBone('${newPath}')">${bone["bonename"]}</button>`;
+  li.innerHTML=`<button onclick="setBone('${newPath}')">${bone["name"]}</button>`;
   list.appendChild(li);
   if (bone["child_bones"].length>0){
     newList=document.createElement("ul");
