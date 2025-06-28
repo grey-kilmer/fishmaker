@@ -85,7 +85,7 @@ function updateBoneListPearl(bone, list, pathname){
 updateBoneList();
 function addBone(){
   var newBone={
-    "name":"",
+    "name":"unnamed",
     "x":0,
     "y":0,
     "CVariance":180,
@@ -94,7 +94,7 @@ function addBone(){
   };
   currentBone["child_bones"].push(newBone);
   currentBone=newBone;
-  document.getElementById("bonename").value="";
+  document.getElementById("bonename").value="unnamed";
   document.getElementById("bonex").value=0;
   document.getElementById("boney").value=0;
   document.getElementById("clockwise_variance").value=180;
