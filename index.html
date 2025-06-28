@@ -35,9 +35,10 @@
     <div id="bone_editor" class="triad">
       <center>
         <h2>Bone Editor</h2>
-        <button id="addbone" onclick="addbone()">+</button><br>
+        <button id="addbone" onclick="addbone()">+</button>
+        <button id="deleteBone" onclick="deleteBone()">-</button><br>
         Bone Name: <!--></!--> <input id="bonename" value="root" name="bonename" onchange="renameBone()"><br>
-        Parent Bone: <!--></!--> <input id="parent_bone" value="/" onchange="reparent()"><br>
+        Parent Bone: <!--></!--> <input id="parent_bone" value="/" onchange="reparentBone()"><br>
         x = <input id="bonex" type="number" name="bonex" value="0" onchange="updateBonePosition()">
         y = <input id="boney" type="number" name="boney" value="0" onchange="updateBonePosition()"><br>
         C Variance: <input id="clockwise_variance" type="range" min="0" max="360" name="CVariance" class="linked" oninput="updateVariance();updateLinks()" value=0> <input type="number" name="CVariance" class="linked" onchange="updateVariance();updateLinks()" value=0><br>
@@ -45,9 +46,6 @@
       </center>
         <ul id="bone_chain" class="bonelist">
           <li><button onclick="setBone('/root')">root</button></li>
-          <ul>
-            <li><button onclick="setBone('/root')">root</button></li>
-          </ul>
         </ul>
     </div>
     <div id="texture_editor" class="triad">
