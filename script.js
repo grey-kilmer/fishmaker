@@ -85,6 +85,7 @@ function updateBoneListPearl(bone, list, pathname){
 }
 updateBoneList();
 function addBone(){
+  var parentName=currentBone["name"];
   var newBone={
     "name":"unnamed",
     "x":0,
@@ -100,7 +101,7 @@ function addBone(){
   document.getElementById("boney").value=0;
   document.getElementById("clockwise_variance").value=180;
   document.getElementById("counter_clockwise_variance").value=180;
-  document.getElementById("parent_bone").value=document.getElementById("parent_bone").value+"/unnamed";
+  document.getElementById("parent_bone").value=document.getElementById("parent_bone").value+"/"+parentName;
   updateBoneList();
 }
 function setBone(bonepath){
