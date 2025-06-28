@@ -1,6 +1,6 @@
 var name="";
 var rootBone={
-    "name":"",
+    "name":"root",
     "x":0,
     "y":0,
     "CVariance":180,
