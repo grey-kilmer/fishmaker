@@ -131,7 +131,7 @@ function getBone(bone,pathlist){
       }
     }
   }
-  else {return bone;}
+  return bone;
 }
 function addSplinePoint(){
   
