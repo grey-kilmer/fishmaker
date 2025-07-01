@@ -126,6 +126,8 @@ function getBone(bone,pathlist){
       if (childBone["name"]==pathlist[0]){
         pathlist.shift()
         return getBone(childBone,pathlist);
+      }
+    }
   }
   else {return bone;}
 }
