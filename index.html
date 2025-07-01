@@ -41,7 +41,7 @@
         <button id="addbone" onclick="addBone()">+</button>
         <button id="deleteBone" onclick="deleteBone()">-</button><br>
         Bone Name: <!--></!--> <input id="bonename" value="root" name="bonename" onchange="renameBone()"><br>
-        Parent Bone: <!--></!--> <input id="parent_bone" placeholder="/" onchange="reparentBone()"><br>
+        Parent Bone: <!--></!--> <select id="parent_bone" onchange="reparentBone()"></select><br>
         x = <input id="bonex" type="number" name="bonex" value="0" onchange="updateBonePosition()">
         y = <input id="boney" type="number" name="boney" value="0" onchange="updateBonePosition()"><br>
         C Variance: <input id="clockwise_variance" type="range" min="0" max="360" name="CVariance" class="linked" oninput="updateVariance();updateLinks()" value=0> <input type="number" name="CVariance" class="linked" onchange="updateVariance();updateLinks()" value=0><br>
@@ -73,7 +73,7 @@
               <option value=2>To Child</option>
               <option value=3>Away from Child</option>
             </select><br>
-            Bone: <!--></!--> <input placeholder="/" id="bitmap_bone" onchange="updateBitmapBone()">
+            Bone: <!--></!--> <select class="boneSelector" id="bitmap_bone" onchange="updateBitmapBone()">
           </center>
         </div>
         <div id="spline" class="duo">
@@ -104,7 +104,7 @@
           <option value=1>Fish</option>
           <option value=2>Eel</option>
         </select><br>
-        Bone <input placeholder="/" id="animationBone" onchange="updateAnimationBone()">
+        Bone <select class="boneSelector" id="animationBone" onchange="updateAnimationBone()"></select>
         Starts: <select id="animationDefiner" onchange="updateAnimationDefinition()">
           <option value=-1>None</option>
           <option value=0>Foot</option>
