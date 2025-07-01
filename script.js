@@ -142,19 +142,6 @@ function setBone(id){
   document.getElementById("parent_bone").value=currentBone["parent_bone"];
   updateBoneList();
 }
-function getBone(bone,pathlist){
-  console.log(pathlist);
-  if (pathlist.length>0){
-    for (var childBone of bone["child_bones"]){
-      if (childBone["name"]==pathlist[0]){
-        pathlist.shift()
-        return getBone(childBone,pathlist);
-      }
-    }
-    console.log("failure to find child");
-  }
-  return bone;
-}
 function addSplinePoint(){
   
 }
