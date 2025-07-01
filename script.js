@@ -108,6 +108,7 @@ function addBone(){
 function setBone(bonepath){
   var pathlist=bonepath.split("/");
   pathlist.shift();
+  console.log(pathlist);
   currentBone=getBone(rootBone,pathlist);
   console.log(currentBone);
   pathlist.pop();
