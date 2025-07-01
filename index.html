@@ -41,7 +41,7 @@
         <button id="addbone" onclick="addBone()">+</button>
         <button id="deleteBone" onclick="deleteBone()">-</button><br>
         Bone Name: <!--></!--> <input id="bonename" value="root" name="bonename" onchange="renameBone()"><br>
-        Parent Bone: <!--></!--> <select id="parent_bone" onchange="reparentBone()"></select><br>
+        Parent Bone: <!--></!--> <select class="boneSelector" id="parent_bone" onchange="reparentBone()"></select><br>
         x = <input id="bonex" type="number" name="bonex" value="0" onchange="updateBonePosition()">
         y = <input id="boney" type="number" name="boney" value="0" onchange="updateBonePosition()"><br>
         C Variance: <input id="clockwise_variance" type="range" min="0" max="360" name="CVariance" class="linked" oninput="updateVariance();updateLinks()" value=0> <input type="number" name="CVariance" class="linked" onchange="updateVariance();updateLinks()" value=0><br>
