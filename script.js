@@ -102,7 +102,7 @@ function addBone(){
   document.getElementById("boney").value=0;
   document.getElementById("clockwise_variance").value=180;
   document.getElementById("counter_clockwise_variance").value=180;
-  document.getElementById("parent_bone").value=document.getElementById("parent_bone").value+"/"+parentName;
+  document.getElementById("parent_bone").value=document.getElementById("parent_bone").value+parentName;
   updateBoneList();
 }
 function setBone(bonepath){
