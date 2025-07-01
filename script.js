@@ -103,6 +103,7 @@ function getGenerationOf(bone){
     gen+=1;
     bone=parentBone;
     parentBone=boneList[bone["parent_bone"]]
+  }
   return gen;
 }
 updateBoneList();
