@@ -102,21 +102,21 @@ function addBone(){
   document.getElementById("boney").value=0;
   document.getElementById("clockwise_variance").value=180;
   document.getElementById("counter_clockwise_variance").value=180;
-  document.getElementById("parent_bone").value=document.getElementById("parent_bone").value+"/"+parentName+"/";
+  document.getElementById("parent_bone").value=document.getElementById("parent_bone").value+"/"+parentName;
   updateBoneList();
 }
 function setBone(bonepath){
   var pathlist=bonepath.split("/");
   console.log(pathlist);
-  pathlist.shift();
+  pathlist.shift().shift();
   currentBone=getBone(rootBone,pathlist);
   console.log(currentBone);
   pathlist.pop();
   var parent=getBone(rootBone,pathlist);
   var parentName=pathlist[pathlist.length-1];
-  document.getElementById("bonename").value=currentBone["name"]
-  document.getElementById("bonex").value=currentBone["x"]
-  document.getElementById("boney").value=currentBone["y"]
+  document.getElementById("bonename").value=currentBone["name"];
+  document.getElementById("bonex").value=currentBone["x"];
+  document.getElementById("boney").value=currentBone["y"];
   document.getElementById("clockwise_variance").value=currentBone["CVariance"];
   document.getElementById("counter_clockwise_variance").value=currentBone["CCVariance"];
   document.getElementById("parent_bone").value=bonepath.slice(0,bonepath.lastIndexOf(currentBone["name"]));
