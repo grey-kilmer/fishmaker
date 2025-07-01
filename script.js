@@ -111,7 +111,7 @@ function setBone(bonepath){
   currentBone=getBone(rootBone,pathlist);
   console.log(currentBone);
   pathlist.pop();
-  var parent=getBone(root,pathlist);
+  var parent=getBone(rootBone,pathlist);
   var parentName=pathlist[pathlist.length-1];
   document.getElementById("bonename").value=currentBone["name"]
   document.getElementById("bonex").value=currentBone["x"]
