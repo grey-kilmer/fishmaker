@@ -64,13 +64,13 @@ function updateLinks(){
 updateLinks();
 function updateBoneList(){
   var list=document.getElementById("bone_chain");
+  console.log(list.childNodes);
   for (var child of list.childNodes){
     child.remove();
   }
   updateBoneListPearl(rootBone,list,"");
 }
 function updateBoneListPearl(bone, list, pathname){
-  console.log(bone);
   var li=document.createElement("li");
   var newPath=`${pathname}/${bone["name"]}`;
   li.innerHTML=`<button onclick="setBone('${newPath}')">${bone["name"]}</button>`;
