@@ -86,7 +86,7 @@ function updateBoneListPearl(bone, list){
   list.appendChild(li);
   selects=document.querySelectorAll(".boneSelector");
   for (var select of selects){
-    select.appendChild(option);
+    select.appendChild(option.cloneNode());
   }
   if (bone["child_bones"].length>0){
     newList=document.createElement("ul");
