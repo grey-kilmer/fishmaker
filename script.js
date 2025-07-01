@@ -85,6 +85,7 @@ function updateBoneListPearl(bone, list, pathname){
 }
 updateBoneList();
 function addBone(){
+  console.log(currentBone);
   var parentName=currentBone["name"];
   var newBone={
     "name":"unnamed",
