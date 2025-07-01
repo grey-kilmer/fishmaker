@@ -108,6 +108,7 @@ function setBone(bonepath){
   var pathlist=bonepath.split("/");
   pathlist.shift();
   currentBone=getBone(root,pathlist);
+  console.log(currentBone);
   pathlist.pop();
   var parent=getBone(root,pathlist);
   var parentName=pathlist[pathlist.length-1];
