@@ -124,6 +124,7 @@ function setBone(bonepath){
   updateBoneList();
 }
 function getBone(bone,pathlist){
+  console.log(pathlist);
   if (pathlist.length>0){
     for (var childBone of bone["child_bones"]){
       if (childBone["name"]==pathlist[0]){
@@ -131,6 +132,7 @@ function getBone(bone,pathlist){
         return getBone(childBone,pathlist);
       }
     }
+    console.log("failure to find child");
   }
   return bone;
 }
