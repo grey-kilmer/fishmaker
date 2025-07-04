@@ -29,8 +29,11 @@
       }
       #editor{
         width:80%;
-        height:200px;
+        height:30%;
         border: 2px solid black;
+      }
+      #tabs{
+        max-height:69%;
       }
     </style>
   </head>
@@ -40,7 +43,7 @@
       <input id="name" placeholder="NAME OF FISH" name="name" onchange="updateName()"><br>
       <canvas id="editor"></canvas>
     </center>
-    <center>
+    <center id="tabs">
     <div id="bone_editor" class="triad">
       <center>
         <h2>Bone Editor</h2>
