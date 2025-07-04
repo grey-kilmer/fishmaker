@@ -27,12 +27,17 @@
       #bone_chain{
         overflow: scroll;
       }
+      #editor{
+        width:80%;
+        height:20%;
+      }
     </style>
   </head>
   <body>
     <center>
       <h1>Fishmaker</h1>
-      <input id="name" placeholder="NAME OF FISH" name="name" onchange="updateName()">
+      <input id="name" placeholder="NAME OF FISH" name="name" onchange="updateName()"><br>
+      <canvas id="editor"></canvas>
     </center>
     <center>
     <div id="bone_editor" class="triad">
@@ -123,7 +128,6 @@
       </center>
     </div>
     </center>
-    <canvas id="editor"></canvas>
   </body>
   <script src="script.js"></script>
 </html>
