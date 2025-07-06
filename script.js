@@ -240,8 +240,8 @@ function findBoneAt(x,y){
 }
 canvas.onmousedown=function(event){
   console.log(event);
-  var x=parseInt(event.clientX);
-  var y=parseInt(event.clientY);
+  var x=2*parseInt(event.offsetX);
+  var y=2*parseInt(event.offsetY);
   var bone=findBoneAt(x,y);
   if (bone){
     setBone(bone["id"]);
@@ -251,8 +251,8 @@ canvas.onmousedown=function(event){
 canvas.onmouseup=function(event){
   console.log(event);
   if (isDraggingBone){
-    var x=parseInt(event.clientX);
-    var y=parseInt(event.clientY);
+    var x=2*parseInt(event.offsetX);
+    var y=2*parseInt(event.offsetY);
     if (Math.abs(currentBone["x"]-x)>8&&Math.abs(currentBone["y"]-y)>8){
       document.getElementById("bonex").value=x;
       document.getElementById("boney").value=y;
