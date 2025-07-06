@@ -55,6 +55,14 @@ function reparentBone(){
   updateBoneList();
   drawBone();
 }
+function reparentBonePearl(bone,newParentId){
+  var childList=boneList[bone["parent_bone"]]["child_bones"];
+  childList.splice(childList.indexOf(bone),1);
+  bone["parent_bone"]=newParentId;
+  boneList[newParentId]["child_bones"].push(bone);
+  updateBoneList();
+  drawBone();
+}
 function updateBonePosition(){
   currentBone["x"]=Number.parseInt(document.getElementById("bonex").value);
   currentBone["y"]=Number.parseInt(document.getElementById("boney").value);
@@ -170,8 +178,11 @@ function deleteBone(){
   document.getElementById("parent_bone").value=parentId;
   var childList=boneList[parentId]["child_bones"];
   childList.splice(childList.indexOf(currentBone),1);
-  reparentBone();
+  for (child of currentBone["child_bones"]){
+    reparentBone(child,parentId);
+  }
   setBone(parentId);
+  updateBoneList();
 } 
 function setBone(id){
   currentBone=boneList[id];
