@@ -261,3 +261,6 @@ canvas.onmouseup=function(event){
   }
   isDraggingBone=false;
 }
+canvas.onmouseout=function(event){
+  isDraggingBone=false;
+}
