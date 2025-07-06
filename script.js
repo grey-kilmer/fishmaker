@@ -250,6 +250,7 @@ canvas.onmousedown=function(event){
 }
 canvas.onmouseup=function(event){
   console.log(event);
+  console.log(isDraggingBone);
   if (isDraggingBone){
     var x=2*parseInt(event.offsetX);
     var y=2*parseInt(event.offsetY);
