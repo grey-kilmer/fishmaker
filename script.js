@@ -247,9 +247,7 @@ canvas.onmousedown=function(event){
     isDraggingBone=true;
   }
 }
-canvas.onmouseover=function(event){
-  console.log(event);
-  console.log(isDraggingBone);
+canvas.onmouseup=function(event){
   if (isDraggingBone){
     var x=2*parseInt(event.offsetX);
     var y=2*parseInt(event.offsetY);
@@ -258,10 +256,8 @@ canvas.onmouseover=function(event){
       document.getElementById("boney").value=y;
       currentBone["x"]=x;
       currentBone["y"]=y;
+      isDraggingBone=false;
       drawBone();
     }
   }
-}
-canvas.onmouseup=function(event){
-  isDraggingBone=false;
 }
