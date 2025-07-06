@@ -198,11 +198,11 @@ function drawBone(){
     var angleToChild=Math.atan2(childBone["y"]-bone["y"],childBone["x"]-bone["x"]);
     canvas.beginPath();
     canvas.moveTo(10*Math.cos(angleToChild+Math.PI/2)+bone["x"],10*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
-    canvas.lineTo(childBone["x"],childBone["y"]);
+    canvas.lineTo(childBone["x"]+10*Math.cos(angleToChild+Math.PI),childBone["y"]+10*Math.sin(angleToChild+Math.PI));
     canvas.stroke();
     canvas.beginPath();
     canvas.moveTo(10*Math.cos(angleToChild-Math.PI/2)+bone["x"],10*Math.sin(angleToChild-Math.PI/2)+bone["y"]);
-    canvas.lineTo(childBone["x"],childBone["y"]);
+    canvas.lineTo(childBone["x"]+10*Math.cos(angleToChild+Math.PI),childBone["y"]+10*Math.sin(angleToChild+Math.PI));
     canvas.stroke();
   }
 }
