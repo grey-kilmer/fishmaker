@@ -239,6 +239,7 @@ function findBoneAt(x,y){
   }
 }
 canvas.onmousedown=function(event){
+  console.log(event);
   var x=parseInt(event.clientX);
   var y=parseInt(event.clientY);
   var bone=findBoneAt(x,y);
@@ -248,6 +249,7 @@ canvas.onmousedown=function(event){
   }
 }
 canvas.onmouseup=function(event){
+  console.log(event);
   if (isDraggingBone){
     var x=parseInt(event.clientX);
     var y=parseInt(event.clientY);
