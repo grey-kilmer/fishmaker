@@ -146,12 +146,12 @@ function addBone(){
   currentBone["child_bones"].push(newBone);
   boneList[newBone["id"]]=newBone;
   currentBone=newBone;
-  document.getElementById("bonename").value="unnamed";
+  document.getElementById("bonename").value=currentBone["name"];
   document.getElementById("boneID").innerHTML=currentBone["id"];
-  document.getElementById("bonex").value=0;
-  document.getElementById("boney").value=0;
-  document.getElementById("clockwise_variance").value=180;
-  document.getElementById("counter_clockwise_variance").value=180;
+  document.getElementById("bonex").value=currentBone["x"];
+  document.getElementById("boney").value=currentBone["y"];
+  document.getElementById("clockwise_variance").value=currentBone["CVariance"];
+  document.getElementById("counter_clockwise_variance").value=currentBone["CCVariance"];
   document.getElementById("parent_bone").value=parentId;
   updateBoneList();
   drawBone(rootBone);
@@ -186,6 +186,7 @@ function hasLowerSibling(bone){
 }
 function drawBone(bone){
   var canvas=document.getElementById("editor").getContext("2d");
+  
   canvas.strokeStyle="white"
   //circle
   canvas.beginPath();
