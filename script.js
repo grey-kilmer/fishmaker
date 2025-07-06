@@ -165,6 +165,14 @@ function addBone(){
   updateBoneList();
   drawBone();
 }
+function deleteBone(){
+  var parentId=currentBone["parent_bone"]
+  document.getElementById("parent_bone").value=parentId;
+  reparentBone();
+  setBone(parentId);
+  var childList=boneList[parentId]["child_bones"];
+  childList.splice(childList.indexOf(currentBone),1);
+} 
 function setBone(id){
   currentBone=boneList[id];
   document.getElementById("bonename").value=currentBone["name"];
