@@ -47,13 +47,13 @@ function renameBone(){
   drawBone();
 }
 function updateBonePosition(){
-  currentBone["x"]=document.getElementById("bonex").value;
-  currentBone["y"]=document.getElementById("boney").value;
+  currentBone["x"]=Number.parseInt(document.getElementById("bonex").value);
+  currentBone["y"]=Number.parseInt(document.getElementById("boney").value);
   drawBone();
 }
 function updateVariance(){
-  currentBone["CVariance"]=document.getElementById("clockwise_variance").value;
-  currentBone["CCVariance"]=document.getElementById("counter_clockwise_variance").value;
+  currentBone["CVariance"]=Number.parseInt(document.getElementById("clockwise_variance").value);
+  currentBone["CCVariance"]=Number.parseInt(document.getElementById("counter_clockwise_variance").value);
   drawBone();
 }
 function updateLinks(){
