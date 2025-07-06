@@ -154,6 +154,7 @@ function addBone(){
   document.getElementById("counter_clockwise_variance").value=180;
   document.getElementById("parent_bone").value=parentId;
   updateBoneList();
+  drawBone(rootBone);
 }
 function setBone(id){
   currentBone=boneList[id];
