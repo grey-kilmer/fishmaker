@@ -168,10 +168,10 @@ function addBone(){
 function deleteBone(){
   var parentId=currentBone["parent_bone"]
   document.getElementById("parent_bone").value=parentId;
-  reparentBone();
-  setBone(parentId);
   var childList=boneList[parentId]["child_bones"];
   childList.splice(childList.indexOf(currentBone),1);
+  reparentBone();
+  setBone(parentId);
 } 
 function setBone(id){
   currentBone=boneList[id];
