@@ -44,17 +44,17 @@ function importTexture(){
 function renameBone(){
   currentBone["name"]=document.getElementById("bonename").value;
   updateBoneList();
-  drawBone(rootBone);
+  drawBone();
 }
 function updateBonePosition(){
   currentBone["x"]=document.getElementById("bonex").value;
   currentBone["y"]=document.getElementById("boney").value;
-  drawBone(rootBone);
+  drawBone();
 }
 function updateVariance(){
   currentBone["CVariance"]=document.getElementById("clockwise_variance").value;
   currentBone["CCVariance"]=document.getElementById("counter_clockwise_variance").value;
-  drawBone(rootBone);
+  drawBone();
 }
 function updateLinks(){
   for (var x in links){
@@ -154,7 +154,7 @@ function addBone(){
   document.getElementById("counter_clockwise_variance").value=currentBone["CCVariance"];
   document.getElementById("parent_bone").value=parentId;
   updateBoneList();
-  drawBone(rootBone);
+  drawBone();
 }
 function setBone(id){
   currentBone=boneList[id];
@@ -184,11 +184,29 @@ function hasLowerSibling(bone){
   var siblings=boneList[bone["parent_bone"]]["child_bones"];
   return siblings[siblings.length-1]!=bone;
 }
-function drawBone(bone){
+function drawBone(){
+  var bone=rootBone;
   var canvas=document.getElementById("editor").getContext("2d");
-  
+  canvas.clearRectangle(0,0,800,300);
   canvas.strokeStyle="white"
   //circle
+  canvas.beginPath();
+  canvas.arc(bone["x"],bone["y"],5,0,2*Math.PI);
+  canvas.stroke();
+  for (var childBone of bone["child_bones"]){
+    drawBonePearl(childBone,canvas);
+    var angleToChild=Math.atan2(childBone["y"]-bone["y"],childBone["x"]-bone["x"]);
+    canvas.beginPath();
+    canvas.moveTo(5*Math.cos(angleToChild+Math.PI/2)+bone["x"],5*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
+    canvas.lineTo(childBone["x"],childBone["y"]);
+    canvas.stroke();
+    canvas.beginPath();
+    canvas.moveTo(5*Math.cos(angleToChild-Math.PI/2)+bone["x"],5*Math.sin(angleToChild-Math.PI/2)+bone["y"]);
+    canvas.lineTo(childBone["x"],childBone["y"]);
+    canvas.stroke();
+  }
+}
+function drawBonePearl(bone,ctx){
   canvas.beginPath();
   canvas.arc(bone["x"],bone["y"],5,0,2*Math.PI);
   canvas.stroke();
@@ -205,4 +223,4 @@ function drawBone(bone){
     canvas.stroke();
   }
 }
-drawBone(rootBone);
+drawBone();
