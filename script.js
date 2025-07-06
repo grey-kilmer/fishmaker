@@ -76,6 +76,7 @@ function updateBoneList(){
   for (var option of document.querySelectorAll(".boneChoice")){
     option.remove();
   }
+  list=document.getElementById("bone_chain");
   updateBoneListPearl(rootBone,list);
 }
 function updateBoneListPearl(bone, list){
