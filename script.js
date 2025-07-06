@@ -44,14 +44,17 @@ function importTexture(){
 function renameBone(){
   currentBone["name"]=document.getElementById("bonename").value;
   updateBoneList();
+  drawBone(rootBone);
 }
 function updateBonePosition(){
   currentBone["x"]=document.getElementById("bonex").value;
   currentBone["y"]=document.getElementById("boney").value;
+  drawBone(rootBone);
 }
 function updateVariance(){
   currentBone["CVariance"]=document.getElementById("clockwise_variance").value;
   currentBone["CCVariance"]=document.getElementById("counter_clockwise_variance").value;
+  drawBone(rootBone);
 }
 function updateLinks(){
   for (var x in links){
@@ -185,7 +188,7 @@ function drawBone(bone){
   //circle
   canvas.beginPath();
   canvas.arc(bone["x"],bone["y"],5,0,2*Math.PI);
-  canvals.stroke();
+  canvas.stroke();
   for (var childBone of bone["child_bones"]){
     drawBone(childBone);
     var angleToChild=Math.atan2(childBone["y"]-bone["y"],childBone["x"]-bone["x"]);
