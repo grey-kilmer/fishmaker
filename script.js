@@ -85,8 +85,8 @@ function updateBoneListPearl(bone, list, lastChild){
   option.value=bone["id"];
   option.className="boneChoice";
   prefix="<span class='prefix'>";
-  for (var i=0;i<getGenerationOf(bone);i++){
-    if (lastChild[i]) {
+  for (var x of lastChild){
+    if (x) {
       prefix+="│";
     }
     else{
