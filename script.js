@@ -46,6 +46,14 @@ function renameBone(){
   updateBoneList();
   drawBone();
 }
+function reparentBone(){
+  var newParentId=document.getElementById("parent_bone").value;
+  boneList[currentBone["parent_bone"]]["child_bones"].remove(currentBone);
+  currentBone["parent_bone"]=newParentId;
+  boneList[newParentId]["child_bones"].push(currentBone);
+  updateBoneList();
+  drawBone();
+}
 function updateBonePosition(){
   currentBone["x"]=Number.parseInt(document.getElementById("bonex").value);
   currentBone["y"]=Number.parseInt(document.getElementById("boney").value);
