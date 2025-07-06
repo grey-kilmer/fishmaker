@@ -239,7 +239,6 @@ function findBoneAt(x,y){
   }
 }
 canvas.onmousedown=function(event){
-  console.log(event);
   var x=2*parseInt(event.offsetX);
   var y=2*parseInt(event.offsetY);
   var bone=findBoneAt(x,y);
@@ -248,13 +247,11 @@ canvas.onmousedown=function(event){
     isDraggingBone=true;
   }
 }
-canvas.onmouseup=function(event){
-  console.log(event);
-  console.log(isDraggingBone);
+canvas.onmouseover=function(event){
   if (isDraggingBone){
     var x=2*parseInt(event.offsetX);
     var y=2*parseInt(event.offsetY);
-    if (Math.abs(currentBone["x"]-x)>8&&Math.abs(currentBone["y"]-y)>8){
+    if (Math.abs(currentBone["x"]-x)>2&&Math.abs(currentBone["y"]-y)>2){
       document.getElementById("bonex").value=x;
       document.getElementById("boney").value=y;
       currentBone["x"]=x;
@@ -262,4 +259,7 @@ canvas.onmouseup=function(event){
       drawBone();
     }
   }
+}
+canvas.onmouseup=function(event){
+  isDraggingBone=false;
 }
