@@ -228,7 +228,7 @@ function drawBonePearl(bone,canvas){
   }
 }
 drawBone();
-canvas=var canvas=document.getElementById("editor");
+var canvas=document.getElementById("editor");
 var isDraggingBone=false;
 function findBoneAt(x,y){
   for (var boneId in boneList){
