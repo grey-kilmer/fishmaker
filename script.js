@@ -233,7 +233,7 @@ var isDraggingBone=false;
 function findBoneAt(x,y){
   for (var boneId in boneList){
     var bone=boneList[boneId];
-    if (Math.abs(bone["x"]-x)<10&&Math.abs(bone["y"]-y)<10){
+    if (Math.abs(bone["x"]-x)<20&&Math.abs(bone["y"]-y)<20){
       return bone;
     }
   }
