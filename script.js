@@ -228,3 +228,32 @@ function drawBonePearl(bone,canvas){
   }
 }
 drawBone();
+canvas=var canvas=document.getElementById("editor");
+var isDraggingBone=false;
+function findBoneAt(x,y){
+  for (var boneId in boneList){
+    var bone=boneList[boneId];
+    if (Math.abs(bone["x"]-x)<5&&Math.abs(bone["y"]-y)<5){
+      return bone;
+    }
+  }
+}
+canvas.onmousedown=function(event){
+  var x=parseInt(event.clientX);
+  var y=parseInt(event.clientY);
+  var bone=findBoneAt(x,y);
+  if (bone){
+    setBone(bone["id"]);
+    isDraggingBone=true;
+  }
+}
+canvas.onmouseup=function(event){
+  var x=parseInt(event.clientX);
+  var y=parseInt(event.clientY);
+  if (Math.abs(bone["x"]-x)>8&&Math.abs(bone["y"]-y)>8){
+    document.getElementById("bonex").value=x;
+    document.getElementById("boney").value=y;
+    currentBone["x"]=x;
+    currentBone["y"]=y;
+  }
+}
