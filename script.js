@@ -185,6 +185,7 @@ function hasLowerSibling(bone){
 }
 function drawBone(bone){
   var canvas=document.getElementById("editor").getContext("2d");
+  canvas.strokeStyle="white"
   //circle
   canvas.beginPath();
   canvas.arc(bone["x"],bone["y"],5,0,2*Math.PI);
