@@ -69,9 +69,9 @@ function updateLinks(){
 }
 updateLinks();
 function updateBoneList(){
-  var list=document.getElementById("bone_chain");
-  for (var child of list.childNodes){
-    child.remove();
+  var list=document.getElementById("bone_chain").childNodes;
+  while (list.length>0){
+    list[0].remove();
   }
   for (var option of document.querySelectorAll(".boneChoice")){
     option.remove();
@@ -85,7 +85,7 @@ function updateBoneListPearl(bone, list){
   option.className="boneChoice";
   prefix="";
   for (var i=0;i<getGenerationOf(bone);i++){prefix+="⠀";}
-  prefix+="└⠀";
+  prefix+="└";
   option.innerHTML=prefix+bone["name"];
   li.innerHTML=prefix+`<button onclick="setBone('${bone["id"]}')">${bone["name"]}</button>`;
   list.appendChild(li);
