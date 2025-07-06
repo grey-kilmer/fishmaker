@@ -126,6 +126,7 @@ function addBone(){
   boneList[newBone["id"]]=newBone;
   currentBone=newBone;
   document.getElementById("bonename").value="unnamed";
+  document.getElementById("boneID").innerHTML=currentBone["id"];
   document.getElementById("bonex").value=0;
   document.getElementById("boney").value=0;
   document.getElementById("clockwise_variance").value=180;
@@ -136,6 +137,7 @@ function addBone(){
 function setBone(id){
   currentBone=boneList[id];
   document.getElementById("bonename").value=currentBone["name"];
+  document.getElementById("boneID").innerHTML=currentBone["id"];
   document.getElementById("bonex").value=currentBone["x"];
   document.getElementById("boney").value=currentBone["y"];
   document.getElementById("clockwise_variance").value=currentBone["CVariance"];
