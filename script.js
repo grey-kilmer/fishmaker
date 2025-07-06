@@ -187,7 +187,7 @@ function hasLowerSibling(bone){
 function drawBone(){
   var bone=rootBone;
   var canvas=document.getElementById("editor").getContext("2d");
-  canvas.clearRectangle(0,0,800,300);
+  canvas.clearRect(0,0,800,300);
   canvas.strokeStyle="white"
   //circle
   canvas.beginPath();
