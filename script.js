@@ -199,4 +199,4 @@ function drawBone(bone){
     canvas.stroke();
   }
 }
-    
+drawBone(rootBone);
