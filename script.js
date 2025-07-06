@@ -84,9 +84,9 @@ function updateBoneListPearl(bone, list){
   var option=document.createElement("option");
   option.value=bone["id"];
   option.className="boneChoice";
-  prefix="";
-  for (var i=0;i<getGenerationOf(bone);i++){prefix+="⠀";}
-  prefix+="└";
+  prefix="<span class='prefix'>";
+  for (var i=0;i<getGenerationOf(bone);i++){prefix+="|";}
+  prefix+="└</span>";
   option.innerHTML=prefix+bone["name"];
   li.innerHTML=prefix+`<button onclick="setBone('${bone["id"]}')">${bone["name"]}</button>`;
   list.appendChild(li);
