@@ -248,12 +248,14 @@ canvas.onmousedown=function(event){
   }
 }
 canvas.onmouseup=function(event){
-  var x=parseInt(event.clientX);
-  var y=parseInt(event.clientY);
-  if (Math.abs(currentBone["x"]-x)>8&&Math.abs(currentBone["y"]-y)>8){
-    document.getElementById("bonex").value=x;
-    document.getElementById("boney").value=y;
-    currentBone["x"]=x;
-    currentBone["y"]=y;
+  if (isDraggingBone){
+    var x=parseInt(event.clientX);
+    var y=parseInt(event.clientY);
+    if (Math.abs(currentBone["x"]-x)>8&&Math.abs(currentBone["y"]-y)>8){
+      document.getElementById("bonex").value=x;
+      document.getElementById("boney").value=y;
+      currentBone["x"]=x;
+      currentBone["y"]=y;
+    }
   }
 }
