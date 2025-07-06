@@ -80,6 +80,7 @@ function updateBoneList(){
   updateBoneListPearl(rootBone,list,[false]);
 }
 function updateBoneListPearl(bone, list, lastChild){
+  console.log(lastChild);
   var li=document.createElement("li");
   var option=document.createElement("option");
   option.value=bone["id"];
