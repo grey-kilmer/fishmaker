@@ -256,8 +256,8 @@ canvas.onmouseup=function(event){
       document.getElementById("boney").value=y;
       currentBone["x"]=x;
       currentBone["y"]=y;
-      isDraggingBone=false;
       drawBone();
     }
   }
+  isDraggingBone=false;
 }
