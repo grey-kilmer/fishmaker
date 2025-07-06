@@ -77,16 +77,29 @@ function updateBoneList(){
     option.remove();
   }
   list=document.getElementById("bone_chain");
-  updateBoneListPearl(rootBone,list);
+  updateBoneListPearl(rootBone,list,[false]);
 }
-function updateBoneListPearl(bone, list){
+function updateBoneListPearl(bone, list, lastChild){
   var li=document.createElement("li");
   var option=document.createElement("option");
   option.value=bone["id"];
   option.className="boneChoice";
   prefix="<span class='prefix'>";
-  for (var i=0;i<getGenerationOf(bone);i++){prefix+="│";}
-  prefix+="├</span>";
+  for (var i=0;i<getGenerationOf(bone);i++){
+    if (lastChild[i]) {
+      prefix+="│";
+    }
+    else{
+      prefix+="⠀";
+    }
+  }
+  lastChild.push(hasNoLowerSibling(bone));
+  if (lastChild[lastChild.length-1]) {
+    prefix+="├</span>";
+  }
+  else{
+    prefix+="└</span>";
+  }
   option.innerHTML=prefix+bone["name"];
   li.innerHTML=prefix+`<button onclick="setBone('${bone["id"]}')">${bone["name"]}</button>`;
   list.appendChild(li);
@@ -96,7 +109,7 @@ function updateBoneListPearl(bone, list){
   }
   if (bone["child_bones"].length>0){
     for (var subBone of bone["child_bones"]){
-      updateBoneListPearl(subBone, list);
+      updateBoneListPearl(subBone, list, lastChild);
     }
   }
 }
@@ -159,3 +172,7 @@ function selectSplinePoint(){
 function selectTexture(){
   
 }
+function hasNoLowerSibling(bone){
+  if (bone["id"]=="#0") return false;
+  var siblings=boneList[bone["parent_bone"]]["childBones"];
+  return siblings[siblings.length-1]==bone;
