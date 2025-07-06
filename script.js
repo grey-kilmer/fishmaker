@@ -176,3 +176,4 @@ function hasLowerSibling(bone){
   if (bone["id"]=="#0") return false;
   var siblings=boneList[bone["parent_bone"]]["childBones"];
   return siblings[siblings.length-1]!=bone;
+}
