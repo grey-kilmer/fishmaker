@@ -215,7 +215,7 @@ function drawBonePearl(bone,canvas){
   canvas.arc(bone["x"],bone["y"],10,0,2*Math.PI);
   canvas.stroke();
   for (var childBone of bone["child_bones"]){
-    drawBonePearl(childBone);
+    drawBonePearl(childBone,canvas);
     var angleToChild=Math.atan2(childBone["y"]-bone["y"],childBone["x"]-bone["x"]);
     canvas.beginPath();
     canvas.moveTo(10*Math.cos(angleToChild+Math.PI/2)+bone["x"],10*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
