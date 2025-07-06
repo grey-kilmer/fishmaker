@@ -93,7 +93,7 @@ function updateBoneListPearl(bone, list, lastChild){
       prefix+="⠀";
     }
   }
-  lastChild.push(hasNoLowerSibling(bone));
+  lastChild.push(hasLowerSibling(bone));
   if (lastChild[lastChild.length-1]) {
     prefix+="├</span>";
   }
@@ -172,7 +172,7 @@ function selectSplinePoint(){
 function selectTexture(){
   
 }
-function hasNoLowerSibling(bone){
+function hasLowerSibling(bone){
   if (bone["id"]=="#0") return false;
   var siblings=boneList[bone["parent_bone"]]["childBones"];
-  return siblings[siblings.length-1]==bone;
+  return siblings[siblings.length-1]!=bone;
