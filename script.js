@@ -83,15 +83,13 @@ function updateBoneListPearl(bone, list){
   var option=document.createElement("option");
   li.innerHTML=`<button onclick="setBone('${bone["id"]}')">${bone["name"]}</button>`;
   option.value=bone["id"];
-  option.class="boneChoice";
+  option.className="boneChoice";
   prefix=""
   for (var i=0;i<getGenerationOf(bone);i++){prefix+=">";}
   option.innerHTML=prefix+bone["name"]
   list.appendChild(li);
   selects=document.querySelectorAll(".boneSelector");
   for (var select of selects){
-    console.log(option);
-    console.log(option.cloneNode(true));
     select.appendChild(option.cloneNode(true));
   }
   if (bone["child_bones"].length>0){
