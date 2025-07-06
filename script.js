@@ -81,23 +81,21 @@ function updateBoneList(){
 function updateBoneListPearl(bone, list){
   var li=document.createElement("li");
   var option=document.createElement("option");
-  li.innerHTML=`<button onclick="setBone('${bone["id"]}')">${bone["name"]}</button>`;
   option.value=bone["id"];
   option.className="boneChoice";
   prefix="";
   for (var i=0;i<getGenerationOf(bone);i++){prefix+="⠀";}
   prefix+="└⠀";
-  option.innerHTML=prefix+bone["name"]
+  option.innerHTML=prefix+bone["name"];
+  li.innerHTML=prefix+`<button onclick="setBone('${bone["id"]}')">${bone["name"]}</button>`;
   list.appendChild(li);
   selects=document.querySelectorAll(".boneSelector");
   for (var select of selects){
     select.appendChild(option.cloneNode(true));
   }
   if (bone["child_bones"].length>0){
-    newList=document.createElement("ul");
-    list.appendChild(newList);
     for (var subBone of bone["child_bones"]){
-      updateBoneListPearl(subBone, newList);
+      updateBoneListPearl(subBone, list);
     }
   }
 }
