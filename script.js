@@ -101,8 +101,10 @@ function updateBoneListPearl(bone, list, lastChild){
   else{
     prefix+="└</span>";
   }
-  option.innerHTML=prefix+bone["name"];
   li.innerHTML=prefix+`<button onclick="setBone('${bone["id"]}')">${bone["name"]}</button>`;
+  prefix.replace("├",">");
+  prefix.replace("└",">");
+  option.innerHTML=prefix+bone["name"];
   list.appendChild(li);
   selects=document.querySelectorAll(".boneSelector");
   for (var select of selects){
@@ -178,3 +180,23 @@ function hasLowerSibling(bone){
   var siblings=boneList[bone["parent_bone"]]["child_bones"];
   return siblings[siblings.length-1]!=bone;
 }
+function drawBone(bone){
+  var canvas=document.getElementById("editor").getContext("2d");
+  //circle
+  canvas.beginPath();
+  canvas.arc(bone["x"],bone["y"],5,0,2*Math.PI);
+  canvals.stroke();
+  for (var childBone of bone["child_bones"]){
+    drawBone(childBone);
+    var angleToChild=Math.atan2(childBone["y"]-bone["y"],childBone["x"]-bone["x"]);
+    canvas.beginPath();
+    canvas.moveTo(5*Math.cos(angleToChild+Math.PI/2)+bone["x"],5*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
+    canvas.lineTo(childBone["x"],childBone["y"]);
+    canvas.stroke();
+    canvas.beginPath();
+    canvas.moveTo(5*Math.cos(angleToChild-Math.PI/2)+bone["x"],5*Math.sin(angleToChild-Math.PI/2)+bone["y"]);
+    canvas.lineTo(childBone["x"],childBone["y"]);
+    canvas.stroke();
+  }
+}
+    
