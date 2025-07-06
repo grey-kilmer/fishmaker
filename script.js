@@ -123,6 +123,7 @@ function addBone(){
   };
   boneNum+=1;
   currentBone["child_bones"].push(newBone);
+  boneList[newBone["id"]]=newBone;
   currentBone=newBone;
   document.getElementById("bonename").value="unnamed";
   document.getElementById("bonex").value=0;
