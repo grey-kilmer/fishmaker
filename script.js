@@ -206,7 +206,7 @@ function drawBone(){
     canvas.stroke();
   }
 }
-function drawBonePearl(bone,ctx){
+function drawBonePearl(bone,canvas){
   canvas.beginPath();
   canvas.arc(bone["x"],bone["y"],5,0,2*Math.PI);
   canvas.stroke();
