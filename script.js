@@ -110,7 +110,7 @@ function updateBoneListPearl(bone, list, lastChild){
   }
   if (bone["child_bones"].length>0){
     for (var subBone of bone["child_bones"]){
-      updateBoneListPearl(subBone, list, lastChild);
+      updateBoneListPearl(subBone, list, lastChild.clone());
     }
   }
 }
