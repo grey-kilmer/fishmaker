@@ -1,8 +1,8 @@
 var name="";
 var rootBone={
   "name":"root",
-  "x":0,
-  "y":0,
+  "x":400,
+  "y":150,
   "CVariance":180,
   "CCVariance":180,
   "child_bones":[],
