@@ -1,8 +1,8 @@
 var name="";
 var rootBone={
   "name":"root",
-  "x":400,
-  "y":150,
+  "x":800,
+  "y":300,
   "CVariance":180,
   "CCVariance":180,
   "child_bones":[],
@@ -134,8 +134,8 @@ function addBone(){
   var parentId=currentBone["id"];
   var newBone={
     "name":"unnamed",
-    "x":400,
-    "y":150,
+    "x":800,
+    "y":300,
     "CVariance":180,
     "CCVariance":180,
     "child_bones":[],
@@ -187,38 +187,38 @@ function hasLowerSibling(bone){
 function drawBone(){
   var bone=rootBone;
   var canvas=document.getElementById("editor").getContext("2d");
-  canvas.clearRect(0,0,800,300);
+  canvas.clearRect(0,0,1600,600);
   canvas.strokeStyle="white"
   //circle
   canvas.beginPath();
-  canvas.arc(bone["x"],bone["y"],5,0,2*Math.PI);
+  canvas.arc(bone["x"],bone["y"],10,0,2*Math.PI);
   canvas.stroke();
   for (var childBone of bone["child_bones"]){
     drawBonePearl(childBone,canvas);
     var angleToChild=Math.atan2(childBone["y"]-bone["y"],childBone["x"]-bone["x"]);
     canvas.beginPath();
-    canvas.moveTo(5*Math.cos(angleToChild+Math.PI/2)+bone["x"],5*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
+    canvas.moveTo(10*Math.cos(angleToChild+Math.PI/2)+bone["x"],10*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
     canvas.lineTo(childBone["x"],childBone["y"]);
     canvas.stroke();
     canvas.beginPath();
-    canvas.moveTo(5*Math.cos(angleToChild-Math.PI/2)+bone["x"],5*Math.sin(angleToChild-Math.PI/2)+bone["y"]);
+    canvas.moveTo(10*Math.cos(angleToChild-Math.PI/2)+bone["x"],10*Math.sin(angleToChild-Math.PI/2)+bone["y"]);
     canvas.lineTo(childBone["x"],childBone["y"]);
     canvas.stroke();
   }
 }
 function drawBonePearl(bone,canvas){
   canvas.beginPath();
-  canvas.arc(bone["x"],bone["y"],5,0,2*Math.PI);
+  canvas.arc(bone["x"],bone["y"],10,0,2*Math.PI);
   canvas.stroke();
   for (var childBone of bone["child_bones"]){
-    drawBone(childBone);
+    drawBonePearl(childBone);
     var angleToChild=Math.atan2(childBone["y"]-bone["y"],childBone["x"]-bone["x"]);
     canvas.beginPath();
-    canvas.moveTo(5*Math.cos(angleToChild+Math.PI/2)+bone["x"],5*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
+    canvas.moveTo(10*Math.cos(angleToChild+Math.PI/2)+bone["x"],10*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
     canvas.lineTo(childBone["x"],childBone["y"]);
     canvas.stroke();
     canvas.beginPath();
-    canvas.moveTo(5*Math.cos(angleToChild-Math.PI/2)+bone["x"],5*Math.sin(angleToChild-Math.PI/2)+bone["y"]);
+    canvas.moveTo(10*Math.cos(angleToChild-Math.PI/2)+bone["x"],10*Math.sin(angleToChild-Math.PI/2)+bone["y"]);
     canvas.lineTo(childBone["x"],childBone["y"]);
     canvas.stroke();
   }
