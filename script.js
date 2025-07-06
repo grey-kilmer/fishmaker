@@ -49,7 +49,7 @@ function renameBone(){
 function reparentBone(){
   var newParentId=document.getElementById("parent_bone").value;
   var childList=boneList[currentBone["parent_bone"]]["child_bones"];
-  childList.slice(childList.indexOf(currentBone),1);
+  childList.splice(childList.indexOf(currentBone),1);
   currentBone["parent_bone"]=newParentId;
   boneList[newParentId]["child_bones"].push(currentBone);
   updateBoneList();
