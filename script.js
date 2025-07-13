@@ -314,7 +314,7 @@ function updateColor(colNum){
   var color=document.querySelector("#picker"+colNum+" input").value;
   colorList[colNum]=color;
   document.querySelector("#light"+colNum+" input").value=getLight(color);
-  document.querySelector("#dark"+colNum+" input").value="#"+getDark(color);
+  document.querySelector("#dark"+colNum+" input").value=getDark(color);
 }
 for (var i=0;i<6;i++){
   updateColor(i);
