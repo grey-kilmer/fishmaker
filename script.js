@@ -12,6 +12,7 @@ var rootBone={
 var boneList={
     "#0":rootBone
 };
+var colorList=["#000000","#000000","#000000","#000000","#000000","#000000"];
 var boneNum=1;
 var currentBone=rootBone;
 var importTextures=[];
@@ -291,4 +292,27 @@ canvas.onmouseup=function(event){
 }
 canvas.onmouseout=function(event){
   isDraggingBone=false;
+}
+function decimaltoHex(num){
+  if (num>=255){return "FF";}
+  var hexal=["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
+  return hexal[Math.floor(num/16)]+hexal[num%16];
+}
+function getLight(color){
+  var r=("0x"+color.slice(1,3))*1;
+  var g=("0x"+color.slice(3,5))*1;
+  var b=("0x"+color.slice(5,7))*1;
+  return "#"+decimaltoHex(r*1.3)+decimaltoHex(g*1.3)+decimaltoHex(b*1.3)
+}
+function getDark(color){
+  var r=("0x"+color.slice(1,3))*1;
+  var g=("0x"+color.slice(3,5))*1;
+  var b=("0x"+color.slice(5,7))*1;
+  return "#"+decimaltoHex(r*0.7)+decimaltoHex(g*0.7)+decimaltoHex(b*0.7)
+}
+function updateColor(colNum){
+  var color=document.querySelector("#picker"+colNum+" input").value;
+  colorList[colNum]=color;
+  document.querySelector("#light"+colNum+" input").value=getLight(color);
+  document.querySelector("#dark"+colNum+" input").value="#"+getDark(color);
 }
