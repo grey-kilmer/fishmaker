@@ -316,3 +316,6 @@ function updateColor(colNum){
   document.querySelector("#light"+colNum+" input").value=getLight(color);
   document.querySelector("#dark"+colNum+" input").value="#"+getDark(color);
 }
+for (var i=0;i<6;i++){
+  updateColor(i);
+}
