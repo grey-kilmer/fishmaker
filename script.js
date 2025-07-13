@@ -296,7 +296,7 @@ canvas.onmouseout=function(event){
 function decimaltoHex(num){
   if (num>=255){return "FF";}
   var hexal=["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
-  return hexal[Math.floor(num/16)]+hexal[num%16];
+  return hexal[Math.floor(num/16)]+hexal[Math.floor(num%16)];
 }
 function getLight(color){
   var r=("0x"+color.slice(1,3))*1;
