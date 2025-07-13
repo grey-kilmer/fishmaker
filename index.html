@@ -119,7 +119,7 @@
               <option value=2>To Child</option>
               <option value=3>Away from Child</option>
             </select><br>
-            Bone: <select class="boneSelector" id="bitmap_bone" onchange="updateBitmapBone()">
+            Bone: <select class="boneSelector" id="bitmap_bone" onchange="updateBitmapBone()"></select>
           </center>
         </div>
         <div id="spline" class="duo">
@@ -127,7 +127,7 @@
             <button id="addsplinepoint">+</button><br>
             Radius: <input type="number" name="r" id="r" onchange="updateRadius()"><br>
             Theta: <input type="range" min="0" max="180" class="linked" value="0" name="theta" oninput="updateLinks()" ><input type="number" name="theta" class="linked" value="0" name="theta" onchange="updateLinks()"><br>
-            Bone: <input id="splinebone" placeholder="/" onchange="updateSplineBone()"><br>
+            Bone: <select class="boneSelector" id="splinebone" onchange="updateSplineBone()"></select><br>
             <ul id="spline_points" class="list">
               
             </ul><br>
