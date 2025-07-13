@@ -60,8 +60,8 @@
         <h2>Bone Editor</h2>
         <button id="addbone" onclick="addBone()">+</button>
         <button id="deleteBone" onclick="deleteBone()">-</button><br>
-        Bone Name: <!--></!--> <input id="bonename" value="root" name="bonename" onchange="renameBone()"><span id="boneID">#0</span><br>
-        Reparent Bone To: <!--></!--> <select class="boneSelector" id="parent_bone" onchange="reparentBone()"></select><br>
+        Bone Name: <input id="bonename" value="root" name="bonename" onchange="renameBone()"><span id="boneID">#0</span><br>
+        Reparent Bone To: <select class="boneSelector" id="parent_bone" onchange="reparentBone()"></select><br>
         x = <input id="bonex" type="number" name="bonex" value="800" onchange="updateBonePosition()">
         y = <input id="boney" type="number" name="boney" value="300" onchange="updateBonePosition()"><br>
         C Variance: <input value="180" id="clockwise_variance" type="range" min="0" max="360" name="CVariance" class="linked" oninput="updateVariance();updateLinks()"> <input type="number" name="CVariance" class="linked" onchange="updateVariance();updateLinks()" value=180><br>
@@ -108,36 +108,36 @@
       <center>
         <div id="bitmap" class="duo">
           <center>
-            Texture: <!--></!--> <input type="file" id="texture_import" onchange="importTexture()"><br>
-            Anchored To: <!--></!--> <select id="anchor_type" onchange="updateAnchorType()">
+            Texture: <input type="file" id="texture_import" onchange="importTexture()"><br>
+            Anchored To: <select id="anchor_type" onchange="updateAnchorType()">
               <option value=0>Center</option>
               <option value=1>Bottom</option>
             </select><br>
-            Point top: <!--></!--> <select id="pointing_direction" onchange="updatePointingDirection()">
+            Point top: <select id="pointing_direction" onchange="updatePointingDirection()">
               <option value=0>To Parent</option>
               <option value=1>Away from Parent</option>
               <option value=2>To Child</option>
               <option value=3>Away from Child</option>
             </select><br>
-            Bone: <!--></!--> <select class="boneSelector" id="bitmap_bone" onchange="updateBitmapBone()">
+            Bone: <select class="boneSelector" id="bitmap_bone" onchange="updateBitmapBone()">
           </center>
         </div>
         <div id="spline" class="duo">
           <center>
             <button id="addsplinepoint">+</button><br>
-            Radius: <!--></!--> <input type="number" name="r" id="r" onchange="updateRadius()"><br>
-            Theta: <!--></!--> <input type="range" min="0" max="180" class="linked" value="0" name="theta" oninput="updateLinks()" ><input type="number" name="theta" class="linked" value="0" name="theta" onchange="updateLinks()"><br>
-            Bone: <!--></!--> <input id="splinebone" placeholder="/" onchange="updateSplineBone()"><br>
+            Radius: <input type="number" name="r" id="r" onchange="updateRadius()"><br>
+            Theta: <input type="range" min="0" max="180" class="linked" value="0" name="theta" oninput="updateLinks()" ><input type="number" name="theta" class="linked" value="0" name="theta" onchange="updateLinks()"><br>
+            Bone: <input id="splinebone" placeholder="/" onchange="updateSplineBone()"><br>
             <ul id="spline_points" class="list">
               
             </ul><br>
-            Loop: <!--></!--> <input type="checkbox" id="splineLoops" onchange="updateIfSplineLoops()"><br>
-            Line Width: <!--></!--> <input type="number" id="lineWidth" onchange="updateLineWidth()"><br>
-            Line Color: <!--></!--> <select class="palatte_selector" id="lineColor" onchange="updateLineColor()"></select><select class="shadeSelector" onchange="updateLineShade()"><option value=-1>Dark</option><option selected value=0>-</option><option value=1>Light</option></select><br>
-            Line Opacity: <!--></!--> <input type="range" min="0" max="255" class="linked" name="line_opacity" oninput="updateLinks();updateLineOpacity()" value=255> <input id="lineOpacity" type="number" class="linked" name="line_opacity" value=255 onchange="updateLinks();updateLineOpacity()"><br>
-            Fill: <!--></!--> <input type="checkbox" id="splineFills" onchange="updateIfSplineFills()"><br>
-            Fill Color: <!--></!--> <select class="palatte_selector" id="fillColor" onchange="updateFillColor()"></select><br>
-            Fill Opacity: <!--></!--> <input type="range" min="0" max="255" class="linked" name="fill_opacity" oninput="updateLinks();updateFillOpacity()" value=255> <input id="fillOpacity" type="number" class="linked" name="fill_opacity" value=255 onchange="updateLinks();updateFillOpacity()"><br>
+            Loop: <input type="checkbox" id="splineLoops" onchange="updateIfSplineLoops()"><br>
+            Line Width: <input type="number" id="lineWidth" onchange="updateLineWidth()"><br>
+            Line Color: <select class="palatte_selector" id="lineColor" onchange="updateLineColor()"></select><select id="lineShade" onchange="updateLineShade()"><option value=1>Light</option><option selected value=0>-</option><option value=-1>Dark</option></select><br>
+            Line Opacity: <input type="range" min="0" max="255" class="linked" name="line_opacity" oninput="updateLinks();updateLineOpacity()" value=255> <input id="lineOpacity" type="number" class="linked" name="line_opacity" value=255 onchange="updateLinks();updateLineOpacity()"><br>
+            Fill: <input type="checkbox" id="splineFills" onchange="updateIfSplineFills()"><br>
+            Fill Color: <select class="palatte_selector" id="fillColor" onchange="updateFillColor()"></select><select id="fillShade" onchange="updateFillShade()"><option value=1>Light</option><option selected value=0>-</option><option value=-1>Dark</option></select><br>
+            Fill Opacity: <input type="range" min="0" max="255" class="linked" name="fill_opacity" oninput="updateLinks();updateFillOpacity()" value=255> <input id="fillOpacity" type="number" class="linked" name="fill_opacity" value=255 onchange="updateLinks();updateFillOpacity()"><br>
           </center>
         </div>
         </center>
