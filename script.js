@@ -43,12 +43,9 @@ for (var x of linkedItems){
 for (var x of linkedItems){
   links[x.name]["linked"].push(x);
 }
-function reselect(select){
-  console.log(select.querySelectorAll("option"));
+function reselect(select, value){
   for (var option of select.querySelectorAll("option")){
-    console.log(option.value);
-    console.log(select.value);
-    if (option.value==select.value){
+    if (option.value==value){
       console.log("FOUND");
       option.selected=true;
       return
