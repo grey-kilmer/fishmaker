@@ -43,10 +43,15 @@ for (var x of linkedItems){
 for (var x of linkedItems){
   links[x.name]["linked"].push(x);
 }
-function reselect(input){
-  for (var option of input.querySelectorAll("option")){
-    if (option.value==input.value){
+function reselect(select){
+  console.log(select.querySelectorAll("option"));
+  for (var option of select.querySelectorAll("option")){
+    console.log(option.value);
+    console.log(select.value);
+    if (option.value==select.value){
+      console.log("FOUND");
       option.selected=true;
+      return
     }
   }
 }
