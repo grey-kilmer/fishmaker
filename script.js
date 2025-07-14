@@ -69,9 +69,9 @@ function reparentBone(){
   childList.splice(childList.indexOf(currentBone),1);
   currentBone["parent_bone"]=newParentId;
   boneList[newParentId]["child_bones"].push(currentBone);
-  reselect(document.getElementById("parent_bone"),newParentId);
   updateBoneList();
   drawBone();
+  reselect(document.getElementById("parent_bone"),newParentId);
 }
 function reparentBonePearl(bone,newParentId){
   var childList=boneList[bone["parent_bone"]]["child_bones"];
@@ -187,9 +187,9 @@ function addBone(){
   document.getElementById("boney").value=currentBone["y"];
   document.getElementById("clockwise_variance").value=currentBone["CVariance"];
   document.getElementById("counter_clockwise_variance").value=currentBone["CCVariance"];
-  reselect(document.getElementById("parent_bone"),parentId);
   updateBoneList();
   drawBone();
+  reselect(document.getElementById("parent_bone"),parentId);
 }
 function deleteBone(){
   var parentId=currentBone["parent_bone"]
@@ -199,9 +199,9 @@ function deleteBone(){
   for (child of currentBone["child_bones"]){
     reparentBone(child,parentId);
   }
-  reselect(document.getElementById("parent_bone"),boneList[parentId]["parent_id"]);
   setBone(parentId);
   updateBoneList();
+  reselect(document.getElementById("parent_bone"),boneList[parentId]["parent_id"]);
 } 
 function setBone(id){
   currentBone=boneList[id];
@@ -211,8 +211,8 @@ function setBone(id){
   document.getElementById("boney").value=currentBone["y"];
   document.getElementById("clockwise_variance").value=currentBone["CVariance"];
   document.getElementById("counter_clockwise_variance").value=currentBone["CCVariance"];
-  reselect(document.getElementById("parent_bone"),currentBone["parent_bone"]);
   updateBoneList();
+  reselect(document.getElementById("parent_bone"),currentBone["parent_bone"]);
 }
 function addSplinePoint(){
   
