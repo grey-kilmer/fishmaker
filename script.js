@@ -16,7 +16,14 @@ var colorList=["#000000","#000000","#000000","#000000","#000000","#000000"];
 var boneNum=1;
 var currentBone=rootBone;
 var importTextures=[];
-var textures=[];
+var textures={};
+var currentTexture={
+  "id":"#0",
+  "type":0,
+  texture:0,
+  anchoredTo:"#0",
+  "point":3
+};
 var animationStyle=0;
 var animationDefintions=[];
 var speed=0;
@@ -35,6 +42,13 @@ for (var x of linkedItems){
 }
 for (var x of linkedItems){
   links[x.name]["linked"].push(x);
+}
+function reselect(input){
+  for (var option of input.querySelectorAll("option")){
+    if (option.value==input.value){
+      option.selected=true;
+    }
+  }
 }
 function updateName(){
   name=document.getElementById("name").value;
@@ -318,4 +332,13 @@ function updateColor(colNum){
 }
 for (var i=0;i<6;i++){
   updateColor(i);
+}
+function changeTextureType(){
+  if (document.getElementById("texture_type").value==0){
+    for (var input of document.querySelectorAll("#spline input")){
+      input.disable=true;
+    }
+    
+  }
+}
 }
