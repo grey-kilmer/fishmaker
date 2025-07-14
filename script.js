@@ -18,10 +18,10 @@ var currentBone=rootBone;
 var importTextures=[];
 var textures={};
 var currentTexture={
-  "id":"#0",
+  "id":"t0",
   "type":0,
-  texture:0,
-  anchoredTo:"#0",
+  "texture":0,
+  "anchoredTo":"#0",
   "point":3
 };
 var animationStyle=0;
@@ -69,6 +69,7 @@ function reparentBone(){
   childList.splice(childList.indexOf(currentBone),1);
   currentBone["parent_bone"]=newParentId;
   boneList[newParentId]["child_bones"].push(currentBone);
+  reselect(document.getElementById("parent_bone"),newParentId);
   updateBoneList();
   drawBone();
 }
@@ -187,6 +188,7 @@ function addBone(){
   document.getElementById("clockwise_variance").value=currentBone["CVariance"];
   document.getElementById("counter_clockwise_variance").value=currentBone["CCVariance"];
   document.getElementById("parent_bone").value=parentId;
+  reselect(document.getElementById("parent_bone"),parentId);
   updateBoneList();
   drawBone();
 }
@@ -198,6 +200,7 @@ function deleteBone(){
   for (child of currentBone["child_bones"]){
     reparentBone(child,parentId);
   }
+  reselect(document.getElementById("parent_bone"),boneList[parentId]["parent_id"]);
   setBone(parentId);
   updateBoneList();
 } 
