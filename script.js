@@ -335,10 +335,16 @@ for (var i=0;i<6;i++){
 }
 function changeTextureType(){
   if (document.getElementById("texture_type").value==0){
+    currentTexture["type"]=0
     for (var input of document.querySelectorAll("#spline input")){
       input.disable=true;
     }
-    
+  }
+  else{
+    currentTexture["type"]=1
+    for (var input of document.querySelectorAll("#bitmap input")){
+      input.disable=true;
+    }
   }
 }
-}
+changeTextureType();
