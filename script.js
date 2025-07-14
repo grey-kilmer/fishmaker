@@ -340,19 +340,19 @@ for (var i=0;i<6;i++){
 function changeTextureType(){
   if (document.getElementById("texture_type").value==0){
     currentTexture["type"]=0;
-    for (var input of document.querySelectorAll("#spline input")){
+    for (var input of document.querySelectorAll("#spline input, #spline select")){
       input.disabled=true;
     }
-    for (var input of document.querySelectorAll("#bitmap input")){
+    for (var input of document.querySelectorAll("#bitmap input, #bitmap select")){
       input.disabled=false;
     }
   }
   else{
     currentTexture["type"]=1;
-    for (var input of document.querySelectorAll("#spline input")){
+    for (var input of document.querySelectorAll("#spline input, #spline select")){
       input.disabled=false;
     }
-    for (var input of document.querySelectorAll("#bitmap input")){
+    for (var input of document.querySelectorAll("#bitmap input, #bitmap select")){
       input.disabled=true;
     }
   }
