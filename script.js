@@ -187,7 +187,6 @@ function addBone(){
   document.getElementById("boney").value=currentBone["y"];
   document.getElementById("clockwise_variance").value=currentBone["CVariance"];
   document.getElementById("counter_clockwise_variance").value=currentBone["CCVariance"];
-  document.getElementById("parent_bone").value=parentId;
   reselect(document.getElementById("parent_bone"),parentId);
   updateBoneList();
   drawBone();
@@ -212,7 +211,7 @@ function setBone(id){
   document.getElementById("boney").value=currentBone["y"];
   document.getElementById("clockwise_variance").value=currentBone["CVariance"];
   document.getElementById("counter_clockwise_variance").value=currentBone["CCVariance"];
-  document.getElementById("parent_bone").value=currentBone["parent_bone"];
+  reselect(document.getElementById("parent_bone"),currentBone["parent_bone"]);
   updateBoneList();
 }
 function addSplinePoint(){
