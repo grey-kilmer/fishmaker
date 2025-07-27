@@ -12,17 +12,27 @@ var rootBone={
 var boneList={
     "#0":rootBone
 };
-var colorList=["#000000","#000000","#000000","#000000","#000000","#000000"];
+var colorList=["#7F0000","#7F3f00","#7F7F00","#007F00","#00007F","#3f007F"];
 var boneNum=1;
 var currentBone=rootBone;
-var importTextures=[];
-var textures={};
 var currentTexture={
-  "id":"t0",
+  "id":"T0",
   "type":0,
-  "texture":0,
+  "image":document.createElement("image"),
+  "scale":1.0,
   "anchoredTo":"#0",
-  "point":3
+  "pointsToParent":false,
+  "points":[],
+  "lineColor":0,
+  "lineShade":0,
+  "lineOpacity":255,
+  "fillColor":0,
+  "fillShade":0,
+  "fillOpacity":255,
+  "loops":true,
+};
+var textures={
+  "T0":currentTexture
 };
 var animationStyle=0;
 var animationDefintions=[];
@@ -42,6 +52,13 @@ for (var x of linkedItems){
 }
 for (var x of linkedItems){
   links[x.name]["linked"].push(x);
+}
+function getColor(id,shade){
+  switch (shade){
+    case 1: return getLight(colorList[id]); break;
+    case 0: return colorList[id]; break;
+    case -1: return getDark(colorList[id]); break;
+  }
 }
 function reselect(select, value){
   for (var option of select.querySelectorAll("option")){
@@ -347,14 +364,116 @@ function changeTextureType(){
       input.disabled=false;
     }
   }
-  else{
+  else
     currentTexture["type"]=1;
     for (var input of document.querySelectorAll("#spline input, #spline select")){
       input.disabled=false;
-    }
     for (var input of document.querySelectorAll("#bitmap input, #bitmap select")){
       input.disabled=true;
     }
   }
 }
 changeTextureType();
+function setTexture(id){
+  currentTexture=texture["id"];
+}
+function raiseTexture(id){
+  
+}
+function lowerTexture(id){
+  
+}
+function updateTextureList(){
+  var list=document.getElementById("texture_list");
+  for (var key in textures){
+    var texture=textures[key];
+    var li=document.createElement("li");
+    li.innerHTML=`<canvas class="textureIcon" id="textureIcon${texture["id"]}" style="height:50px;width:50px" textureid="textureIcon${texture["id"]}"><button onclick="setTexture(${texture["id"]})">texture${texture["id"]}</button><button onclick="raiseTexture(${texture["id"]})">↑</button><button onclick="lowerTexture(${texture["id"]})">↓</button>`;
+    list.appendChild(li);
+  }
+  for (var canvas of document.querySelectorAll(".textureIcon")){
+    var texture=textures[canvas.textureid];
+    var context=canvas.getContext("2d");
+    if (texture["type"]==0){
+      image=texture["image"];
+      var width=max(image.width,image.height);
+      canvas.width=width;
+      canvas.height=width;
+      context.drawImage(image,0,0);
+    }
+    else{
+      var x=[];
+      var y=[];
+      for (var point of texture["points"]){
+        x.push(point["x"]);
+        y.push(point["y"]);
+      }
+      var xOffset=min(x);
+      var yOffset=min(y);
+      var width=max(max(x)-xOffset,max(y)-yOffset);
+      canvas.width=width;
+      canvas.height=width;
+      context.save();
+      context.globalAlpha=texture["lineOpacity"]/255;
+      context.beginPath();
+      context.strokeStyle=getColor(texture["lineColor"],texture["lineShade"]);
+      context.lineCap="round";
+      firstPoint=texture["points"][0]
+      context.moveTo(firstPoint["x"]-xOffset, firstPoint["y"]-yOffset);
+      for (var i=1;i<texture["points"].length;i++){
+        var point=texture["points"][i];
+        context.lineTo(point["x"]-xOffset, point["y"]-yOffset);
+      }
+      context.lineTo(firstPoint["x"]-xOffset, firstPoint["y"]-yOffset);
+      context.stroke();
+      context.restore();
+      context.save();
+      context.globalAlpha=texture["fillOpacity"]/255;
+      context.fillStyle=getColor(texture["fillColor"],texture["fillShade"]);
+      context.fill();
+      context.restore();
+    }
+  }
+}
+function drawTextureOnCanvas(texture,canvas){
+  if (texture["type"]==0){
+    var image=texture["image"];
+    var anchorBone=boneList[texture["anchoredTo"]];
+    var parentBone=boneList[anchorBone["parent"]];
+    var angleToParent=Math.atan2(parentBone["y"]-anchorBone["y"],parentBone["x"]-anchorBone["x"]);
+    var context=canvas.getContext("2d");
+    context.save();
+    context.translate(anchorBone["x"],anchorBone["y"]);
+    context.scale(texture["scale"],texture["scale"]);
+    if (texture["pointsToParent"]){
+      context.rotate(angleToParent);
+    }
+    else{
+      context.rotate(angleToParent+Math.PI);
+    }
+    context.drawImage(image,0-image.width/2,0-image.height/2);
+    context.restore();
+  }
+  else{
+    var context=canvas.getContext("2d");
+    context.save();
+    context.globalAlpha=texture["lineOpacity"]/255;
+    context.beginPath();
+    context.strokeStyle=getColor(texture["lineColor"],texture["lineShade"]);
+    context.lineCap="round";
+    firstPoint=texture["points"][0]
+    context.moveTo(firstPoint["x"], firstPoint["y"]);
+    for (var i=1;i<texture["points"].length;i++){
+      var point=texture["points"][i];
+      context.lineTo(point["x"], point["y"]);
+    }
+    if (texture["loops"]) context.lineTo(firstPoint["x"], firstPoint["y"]);
+    context.stroke();
+    context.restore();
+    context.save();
+    context.globalAlpha=texture["fillOpacity"]/255;
+    context.fillStyle=getColor(texture["fillColor"],texture["fillShade"]);
+    context.fill();
+    context.restore();
+  }
+}
