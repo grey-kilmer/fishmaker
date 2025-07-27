@@ -73,9 +73,22 @@ function updateName(){
   name=document.getElementById("name").value;
 }
 function importTexture(){
-  var image=document.createElement("img");
-  image.src=document.getElementById("texture_import").value;
-  currentTexture["image"]=image;
+  var imageElement=document.createElement("img");
+  var image=document.getElementById("texture_import").files[0];
+  var reader = new FileReader();
+  reader.addEventListener(
+    "load",
+    () => {
+      // convert image file to base64 string
+      imageElement.src = reader.result;
+    },
+    false,
+  );
+
+  if (file) {
+    reader.readAsDataURL(image);
+  }
+  currentTexture["image"]=imageElement;
 }
 function renameBone(){
   currentBone["name"]=document.getElementById("bonename").value;
