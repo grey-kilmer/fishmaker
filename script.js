@@ -73,7 +73,9 @@ function updateName(){
   name=document.getElementById("name").value;
 }
 function importTexture(){
-  importTextures.push(document.getElementById("texture_import").value);
+  var image=document.createElement("image");
+  image.src=document.getElementById("texture_import").value;
+  currentTexture["image"]=image;
 }
 function renameBone(){
   currentBone["name"]=document.getElementById("bonename").value;
