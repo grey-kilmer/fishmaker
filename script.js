@@ -491,3 +491,4 @@ function updateBitmapBone(){
 }
 function updateScale(){
   currentTexture["scale"]=document.getElementById("bitmap_scale").value;
+}
