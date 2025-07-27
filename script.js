@@ -358,7 +358,7 @@ canvas.onmouseup=function(event){
   }
   isDraggingBone=false;
 }
-canvas.onmouseover=function(event){
+canvas.onmousemove=function(event){
   if (isDraggingBone){
     var x=2*parseInt(event.offsetX);
     var y=2*parseInt(event.offsetY);
