@@ -263,56 +263,62 @@ function drawBone(){
   var canvas=document.getElementById("editor").getContext("2d");
   canvas.clearRect(0,0,1600,600);
   canvas.beginPath();
+  var radius=10;
   if (bone==currentBone){
-    canvas.strokeStyle="#FDD"
-    canvas.arc(bone["x"],bone["y"],15,0,2*Math.PI);
+    canvas.strokeStyle="#FDD";
+    radius=15;
   }
   else{
-    canvas.strokeStyle="white"
-    canvas.arc(bone["x"],bone["y"],10,0,2*Math.PI);
+    canvas.strokeStyle="white";
   }
+  canvas.arc(bone["x"],bone["y"],radius,0,2*Math.PI);
   canvas.stroke();
   canvas.strokeStyle="white";
   for (var childBone of bone["child_bones"]){
     drawBonePearl(childBone,canvas);
+    var childRadius=10;
+    if (childBone==currentBone){
+      childRadius=15;
+    }
     var angleToChild=Math.atan2(childBone["y"]-bone["y"],childBone["x"]-bone["x"]);
-    console.log(angleToChild);
     canvas.beginPath();
-    canvas.moveTo(10*Math.cos(angleToChild+Math.PI/2)+bone["x"],10*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
-    console.log(10*Math.cos(angleToChild+Math.PI/2)+bone["x"]);
-    console.log(10*Math.cos(angleToChild+Math.PI/2));
-    console.log(bone["x"]);
-    canvas.lineTo(childBone["x"]+10*Math.cos(angleToChild+Math.PI),childBone["y"]+10*Math.sin(angleToChild+Math.PI));
+    canvas.moveTo(radius*Math.cos(angleToChild+Math.PI/2)+bone["x"],radius*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
+    canvas.lineTo(childBone["x"]+childRadius*Math.cos(angleToChild+Math.PI),childBone["y"]+childRadius*Math.sin(angleToChild+Math.PI));
     canvas.stroke();
     canvas.beginPath();
-    canvas.moveTo(10*Math.cos(angleToChild-Math.PI/2)+bone["x"],10*Math.sin(angleToChild-Math.PI/2)+bone["y"]);
-    canvas.lineTo(childBone["x"]+10*Math.cos(angleToChild+Math.PI),childBone["y"]+10*Math.sin(angleToChild+Math.PI));
+    canvas.moveTo(radius*Math.cos(angleToChild-Math.PI/2)+bone["x"],radius*Math.sin(angleToChild-Math.PI/2)+bone["y"]);
+    canvas.lineTo(childBone["x"]+childRadius*Math.cos(angleToChild+Math.PI),childBone["y"]+childRadius*Math.sin(angleToChild+Math.PI));
     canvas.stroke();
   }
   updateAllTextures();
 }
 function drawBonePearl(bone,canvas){
   canvas.beginPath();
+  var radius=10;
   if (bone==currentBone){
     canvas.strokeStyle="#FDD";
-    canvas.arc(bone["x"],bone["y"],15,0,2*Math.PI);
+    radius=15;
   }
   else{
     canvas.strokeStyle="white";
-    canvas.arc(bone["x"],bone["y"],10,0,2*Math.PI);
   }
+  canvas.arc(bone["x"],bone["y"],radius,0,2*Math.PI);
   canvas.stroke();
   canvas.strokeStyle="white";
   for (var childBone of bone["child_bones"]){
     drawBonePearl(childBone,canvas);
+    var childRadius=10;
+    if (childBone==currentBone){
+      childRadius=15;
+    }
     var angleToChild=Math.atan2(childBone["y"]-bone["y"],childBone["x"]-bone["x"]);
     canvas.beginPath();
-    canvas.moveTo(10*Math.cos(angleToChild+Math.PI/2)+bone["x"],10*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
-    canvas.lineTo(childBone["x"]+10*Math.cos(angleToChild+Math.PI),childBone["y"]+10*Math.sin(angleToChild+Math.PI));
+    canvas.moveTo(radius*Math.cos(angleToChild+Math.PI/2)+bone["x"],radius*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
+    canvas.lineTo(childBone["x"]+childRadius*Math.cos(angleToChild+Math.PI),childBone["y"]+childRadius*Math.sin(angleToChild+Math.PI));
     canvas.stroke();
     canvas.beginPath();
-    canvas.moveTo(10*Math.cos(angleToChild-Math.PI/2)+bone["x"],10*Math.sin(angleToChild-Math.PI/2)+bone["y"]);
-    canvas.lineTo(childBone["x"]+10*Math.cos(angleToChild+Math.PI),childBone["y"]+10*Math.sin(angleToChild+Math.PI));
+    canvas.moveTo(radius*Math.cos(angleToChild-Math.PI/2)+bone["x"],radius*Math.sin(angleToChild-Math.PI/2)+bone["y"]);
+    canvas.lineTo(childBone["x"]+childRadius*Math.cos(angleToChild+Math.PI),childBone["y"]+childRadius*Math.sin(angleToChild+Math.PI));
     canvas.stroke();
   }
 }
@@ -333,6 +339,7 @@ canvas.onmousedown=function(event){
   var bone=findBoneAt(x,y);
   if (bone){
     setBone(bone["id"]);
+    drawBone();
     isDraggingBone=true;
   }
 }
