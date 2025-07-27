@@ -97,6 +97,8 @@ function reparentBone(){
   updateBoneList();
   drawBone();
   reselect(document.getElementById("parent_bone"),newParentId);
+  reselect(document.getElementById("bitmap_bone"),currentBone["id"]);
+  updateBitmapBone();
 }
 function reparentBonePearl(bone,newParentId){
   var childList=boneList[bone["parent_bone"]]["child_bones"];
@@ -229,6 +231,7 @@ function deleteBone(){
   updateBoneList();
   reselect(document.getElementById("parent_bone"),boneList[parentId]["parent_id"]);
   reselect(document.getElementById("bitmap_bone"),currentBone["id"]);
+  updateBitmapBone();
 } 
 function setBone(id){
   currentBone=boneList[id];
@@ -241,6 +244,7 @@ function setBone(id){
   updateBoneList();
   reselect(document.getElementById("parent_bone"),currentBone["parent_bone"]);
   reselect(document.getElementById("bitmap_bone"),currentBone["id"]);
+  updateBitmapBone();
 }
 function addSplinePoint(){
   
