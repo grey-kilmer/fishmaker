@@ -81,6 +81,7 @@ function importTexture(){
     reader.readAsDataURL(image);
   }
   currentTexture["image"]=imageElement;
+  updateAllTextures();
 }
 function renameBone(){
   currentBone["name"]=document.getElementById("bonename").value;
@@ -518,7 +519,9 @@ function updateAllTextures(){
 }
 function updateBitmapBone(){
   currentTexture["anchoredTo"]=document.getElementById("bitmap_bone").value;
+  updateAllTextures();
 }
 function updateScale(){
   currentTexture["scale"]=document.getElementById("bitmap_scale").value/100;
+  updateAllTextures();
 }
