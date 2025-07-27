@@ -480,3 +480,6 @@ function drawTextureOnCanvas(texture,canvas){
     context.restore();
   }
 }
+function updateBitmapBone(){
+  currentTexture["anchoredTo"]=document.getElementById("bitmap_bone").value;
+}
