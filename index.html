@@ -113,8 +113,8 @@
               <option value=0>Center</option>
               <option value=1>Bottom</option>
             </select><br>
-            <input value=on type=checkbox id=pointsToParent onchange=updatePointingDirection()>: <span id="pointsToParentDialogue">Points to Parent</span>
-            Bone: <select class="boneSelector" id="bitmap_bone" onchange="updateBitmapBone()"></select>
+            <input value=on type=checkbox id=pointsToParent onchange=updatePointingDirection()>: <span id="pointsToParentDialogue">Points to Parent</span><br>
+            Bone: <select class="boneSelector" id="bitmap_bone" onchange="updateBitmapBone()"></select><br>
             Scale: <input type="range" min=0 max=500 class=linked value=100 name=scale oninput=updateLinks();updateScale()><input type=number name=scale class=linked value=100 onchange=updateLinks();updateScale()><br>
           </center>
         </div>
