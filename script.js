@@ -454,7 +454,7 @@ function drawTextureOnCanvas(texture,canvas){
     else{
       context.rotate(angleToParent+Math.PI);
     }
-    context.drawImage(image,0-image.width/2,0-image.height/2);
+    context.drawImage(image,0-Math.round(image.width/2),0-Math.round(image.height/2));
     context.restore();
   }
   else{
