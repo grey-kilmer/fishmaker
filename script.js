@@ -76,16 +76,8 @@ function importTexture(){
   var imageElement=document.createElement("img");
   var image=document.getElementById("texture_import").files[0];
   var reader = new FileReader();
-  reader.addEventListener(
-    "load",
-    () => {
-      // convert image file to base64 string
-      imageElement.src = reader.result;
-    },
-    false,
-  );
-
-  if (file) {
+  reader.addEventListener("load",() =>{imageElement.src=reader.result},false,);
+  if (image) {
     reader.readAsDataURL(image);
   }
   currentTexture["image"]=imageElement;
