@@ -364,10 +364,11 @@ function changeTextureType(){
       input.disabled=false;
     }
   }
-  else
+  else {
     currentTexture["type"]=1;
     for (var input of document.querySelectorAll("#spline input, #spline select")){
       input.disabled=false;
+    }
     for (var input of document.querySelectorAll("#bitmap input, #bitmap select")){
       input.disabled=true;
     }
