@@ -214,6 +214,7 @@ function addBone(){
   updateBoneList();
   drawBone();
   reselect(document.getElementById("parent_bone"),parentId);
+  reselect(document.getElementById("bitmap_bone"),currentBone["id"]);
 }
 function deleteBone(){
   var parentId=currentBone["parent_bone"]
@@ -226,6 +227,7 @@ function deleteBone(){
   setBone(parentId);
   updateBoneList();
   reselect(document.getElementById("parent_bone"),boneList[parentId]["parent_id"]);
+  reselect(document.getElementById("bitmap_bone"),currentBone["id"]);
 } 
 function setBone(id){
   currentBone=boneList[id];
@@ -237,6 +239,7 @@ function setBone(id){
   document.getElementById("counter_clockwise_variance").value=currentBone["CCVariance"];
   updateBoneList();
   reselect(document.getElementById("parent_bone"),currentBone["parent_bone"]);
+  reselect(document.getElementById("bitmap_bone"),currentBone["id"]);
 }
 function addSplinePoint(){
   
@@ -259,11 +262,17 @@ function drawBone(){
   var bone=rootBone;
   var canvas=document.getElementById("editor").getContext("2d");
   canvas.clearRect(0,0,1600,600);
-  canvas.strokeStyle="white"
-  //circle
   canvas.beginPath();
-  canvas.arc(bone["x"],bone["y"],10,0,2*Math.PI);
+  if (bone==currentBone){
+    canvas.strokeStyle="blue"
+    canvas.arc(bone["x"],bone["y"],15,0,2*Math.PI);
+  }
+  else{
+    canvas.strokeStyle="white"
+    canvas.arc(bone["x"],bone["y"],10,0,2*Math.PI);
+  }
   canvas.stroke();
+  canvas.strokeStyle="white";
   for (var childBone of bone["child_bones"]){
     drawBonePearl(childBone,canvas);
     var angleToChild=Math.atan2(childBone["y"]-bone["y"],childBone["x"]-bone["x"]);
@@ -280,11 +289,20 @@ function drawBone(){
     canvas.lineTo(childBone["x"]+10*Math.cos(angleToChild+Math.PI),childBone["y"]+10*Math.sin(angleToChild+Math.PI));
     canvas.stroke();
   }
+  updateAllTextures();
 }
 function drawBonePearl(bone,canvas){
   canvas.beginPath();
-  canvas.arc(bone["x"],bone["y"],10,0,2*Math.PI);
+  if (bone==currentBone){
+    canvas.strokeStyle="blue";
+    canvas.arc(bone["x"],bone["y"],15,0,2*Math.PI);
+  }
+  else{
+    canvas.strokeStyle="white";
+    canvas.arc(bone["x"],bone["y"],10,0,2*Math.PI);
+  }
   canvas.stroke();
+  canvas.strokeStyle="white";
   for (var childBone of bone["child_bones"]){
     drawBonePearl(childBone,canvas);
     var angleToChild=Math.atan2(childBone["y"]-bone["y"],childBone["x"]-bone["x"]);
@@ -484,6 +502,11 @@ function drawTextureOnCanvas(texture,canvas){
     context.fillStyle=getColor(texture["fillColor"],texture["fillShade"]);
     context.fill();
     context.restore();
+  }
+}
+function updateAllTextures(){
+  for (textureID in textures){
+    drawTextureOnCanvas(textures[textureID],document.getElementById("editor"));
   }
 }
 function updateBitmapBone(){
