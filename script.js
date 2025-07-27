@@ -264,7 +264,7 @@ function drawBone(){
   canvas.clearRect(0,0,1600,600);
   canvas.beginPath();
   if (bone==currentBone){
-    canvas.strokeStyle="blue"
+    canvas.strokeStyle="#FDD"
     canvas.arc(bone["x"],bone["y"],15,0,2*Math.PI);
   }
   else{
@@ -294,7 +294,7 @@ function drawBone(){
 function drawBonePearl(bone,canvas){
   canvas.beginPath();
   if (bone==currentBone){
-    canvas.strokeStyle="blue";
+    canvas.strokeStyle="#FDD";
     canvas.arc(bone["x"],bone["y"],15,0,2*Math.PI);
   }
   else{
