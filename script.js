@@ -18,7 +18,7 @@ var currentBone=rootBone;
 var currentTexture={
   "id":"T0",
   "type":0,
-  "image":document.createElement("image"),
+  "image":document.createElement("img"),
   "scale":1.0,
   "anchoredTo":"#0",
   "pointsToParent":false,
@@ -73,7 +73,7 @@ function updateName(){
   name=document.getElementById("name").value;
 }
 function importTexture(){
-  var image=document.createElement("image");
+  var image=document.createElement("img");
   image.src=document.getElementById("texture_import").value;
   currentTexture["image"]=image;
 }
@@ -454,6 +454,7 @@ function drawTextureOnCanvas(texture,canvas){
     else{
       context.rotate(angleToParent+Math.PI);
     }
+    console.log(image);
     context.drawImage(image,0-Math.round(image.width/2),0-Math.round(image.height/2));
     context.restore();
   }
