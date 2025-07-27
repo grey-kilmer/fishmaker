@@ -345,17 +345,6 @@ canvas.onmousedown=function(event){
   }
 }
 canvas.onmouseup=function(event){
-  if (isDraggingBone){
-    var x=2*parseInt(event.offsetX);
-    var y=2*parseInt(event.offsetY);
-    if (Math.abs(currentBone["x"]-x)>20&&Math.abs(currentBone["y"]-y)>20){
-      document.getElementById("bonex").value=x;
-      document.getElementById("boney").value=y;
-      currentBone["x"]=x;
-      currentBone["y"]=y;
-      drawBone();
-    }
-  }
   isDraggingBone=false;
 }
 canvas.onmousemove=function(event){
@@ -364,6 +353,8 @@ canvas.onmousemove=function(event){
     var y=2*parseInt(event.offsetY);
     document.getElementById("bonex").value=x;
     document.getElementById("boney").value=y;
+    currentBone["x"]=x;
+    currentBone["y"]=y;
     drawBone();
   }
 }
