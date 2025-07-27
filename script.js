@@ -442,7 +442,7 @@ function drawTextureOnCanvas(texture,canvas){
   if (texture["type"]==0){
     var image=texture["image"];
     var anchorBone=boneList[texture["anchoredTo"]];
-    var parentBone=boneList[anchorBone["parent"]];
+    var parentBone=boneList[anchorBone["parent_bone"]];
     var angleToParent=Math.atan2(parentBone["y"]-anchorBone["y"],parentBone["x"]-anchorBone["x"]);
     var context=canvas.getContext("2d");
     context.save();
