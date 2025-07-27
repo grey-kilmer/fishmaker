@@ -113,20 +113,16 @@
               <option value=0>Center</option>
               <option value=1>Bottom</option>
             </select><br>
-            Point top: <select id="pointing_direction" onchange="updatePointingDirection()">
-              <option value=0>To Parent</option>
-              <option value=1>Away from Parent</option>
-              <option value=2>To Child</option>
-              <option value=3>Away from Child</option>
-            </select><br>
+            <input value=on type=checkbox id=pointsToParent onchange=updatePointingDirection()>: <span id="pointsToParentDialogue">Points to Parent</span>
             Bone: <select class="boneSelector" id="bitmap_bone" onchange="updateBitmapBone()"></select>
+            Scale: <input type="range" min=0 max=500 class=linked value=100 name=scale oninput=updateLinks();updateScale()><input type=number name=scale class=linked value=100 onchange=updateLinks();updateScale()><br>
           </center>
         </div>
         <div id="spline" class="duo">
           <center>
             <button id="addsplinepoint">+</button><br>
             Radius: <input type="number" name="r" id="r" onchange="updateRadius()"><br>
-            Theta: <input type="range" min="0" max="180" class="linked" value="0" name="theta" oninput="updateLinks()" ><input type="number" name="theta" class="linked" value="0" name="theta" onchange="updateLinks()"><br>
+            Theta: <input type="range" min="0" max="180" class="linked" value="0" name="theta" oninput="updateLinks()" ><input type="number" name="theta" class="linked" value="0" onchange="updateLinks()"><br>
             Bone: <select class="boneSelector" id="splinebone" onchange="updateSplineBone()"></select><br>
             <ul id="spline_points" class="list">
               
@@ -140,6 +136,8 @@
             Fill Opacity: <input type="range" min="0" max="255" class="linked" name="fill_opacity" oninput="updateLinks();updateFillOpacity()" value=255> <input id="fillOpacity" type="number" class="linked" name="fill_opacity" value=255 onchange="updateLinks();updateFillOpacity()"><br>
           </center>
         </div>
+        <button onclick="createTexture()">+</button><button onclick="deleteTexture()">-</button><br>
+        <ul id="texture_list"></ul>
       </center>
     </div>
     <div id="animation" class="triad">
