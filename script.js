@@ -352,7 +352,12 @@ canvas.onmousedown=function(event){
 }
 canvas.onmouseup=function(event){
   isDraggingBone=false;
-  canvas.style.cursor="default";
+  if (isDraggingBone){
+    canvas.style.cursor="grab";
+  }
+  else {
+    canvas.style.cursor="default";
+  }
 }
 canvas.onmousemove=function(event){
   var x=2*parseInt(event.offsetX);
@@ -375,6 +380,7 @@ canvas.onmousemove=function(event){
 }
 canvas.onmouseout=function(event){
   isDraggingBone=false;
+  canvas.style.cursor="default";
 }
 function decimaltoHex(num){
   if (num>=255){return "FF";}
