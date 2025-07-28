@@ -485,7 +485,7 @@ function updateTextureList(){
     var context=canvas.getContext("2d");
     if (texture["type"]==0){
       image=texture["image"];
-      var width=max(image.width,image.height);
+      var width=Math.max(image.width,image.height);
       canvas.width=width;
       canvas.height=width;
       context.drawImage(image,0,0);
