@@ -85,7 +85,7 @@ function importTexture(){
         document.getElementById("texture_import").style.imageRendering="pixelated";
       }
       else{
-        document.getElementById("texture_import").style.imageRendering="default";
+        document.getElementById("texture_import").style.imageRendering="auto";
       }
     },
     false,
