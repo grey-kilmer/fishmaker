@@ -75,15 +75,13 @@ function updateName(){
   name=document.getElementById("name").value;
 }
 function importTexture(){
-  var imageElement=document.createElement("img");
+  var imageElement=currentTexture["image"];
   var image=document.getElementById("texture_import").files[0];
   var reader = new FileReader();
-  reader.addEventListener("load",() =>{imageElement.src=reader.result},false,);
+  reader.addEventListener("load",() =>{document.getElementById("texture_import").style.backgroundImage="url("+reader.result+")";imageElement.src=reader.result},false,);
   if (image) {
     reader.readAsDataURL(image);
   }
-  currentTexture["image"]=imageElement;
-  document.getElementById("texture_import").style.backgroundImage="url("+imageElement.src+")";
   updateAllTextures();
   updateTextureList();
 }
