@@ -83,7 +83,7 @@ function importTexture(){
     reader.readAsDataURL(image);
   }
   currentTexture["image"]=imageElement;
-  document.getElementById("texture_import").style.backgroundImage
+  document.getElementById("texture_import").style.backgroundImage="url("+imageElement.src+")";
   updateAllTextures();
   updateTextureList();
 }
