@@ -21,7 +21,7 @@ var currentTexture={
   "image":document.createElement("img"),
   "scale":1.0,
   "anchoredTo":"#0",
-  "pointsToParent":false,
+  "pointsToParent":true,
   "points":[],
   "lineColor":0,
   "lineShade":0,
@@ -31,6 +31,8 @@ var currentTexture={
   "fillOpacity":255,
   "loops":true,
 };
+var textureNum=1;
+var zIndex=[currentTexture];
 var textures={
   "T0":currentTexture
 };
@@ -81,7 +83,9 @@ function importTexture(){
     reader.readAsDataURL(image);
   }
   currentTexture["image"]=imageElement;
+  document.getElementById("texture_import").style.backgroundImage
   updateAllTextures();
+  updateTextureList();
 }
 function renameBone(){
   currentBone["name"]=document.getElementById("bonename").value;
@@ -249,9 +253,6 @@ function setBone(id){
 function addSplinePoint(){
   
 }
-function selectBone(){
-  
-}
 function selectSplinePoint(){
   
 }
@@ -346,20 +347,30 @@ canvas.onmousedown=function(event){
     setBone(bone["id"]);
     drawBone();
     isDraggingBone=true;
+    canvas.style.cursor="grabbing";
   }
 }
 canvas.onmouseup=function(event){
   isDraggingBone=false;
+  canvas.style.cursor="default";
 }
 canvas.onmousemove=function(event){
+  var x=2*parseInt(event.offsetX);
+  var y=2*parseInt(event.offsetY);
   if (isDraggingBone){
-    var x=2*parseInt(event.offsetX);
-    var y=2*parseInt(event.offsetY);
     document.getElementById("bonex").value=x;
     document.getElementById("boney").value=y;
     currentBone["x"]=x;
     currentBone["y"]=y;
     drawBone();
+  }
+  else {
+    if (findBoneAt(x,y)){
+      canvas.style.cursor="grab";
+    }
+    else {
+      canvas.style.cursor="default";
+    }
   }
 }
 canvas.onmouseout=function(event){
@@ -412,19 +423,53 @@ function changeTextureType(){
   }
 }
 changeTextureType();
+function createTexture(){
+  var id="T"+textureNum;
+  var newTexture={
+    "id":id,
+    "type":currentTexture["type"],
+    "image":document.createElement("img"),
+    "scale":1.0,
+    "anchoredTo":currentBone["id"],
+    "pointsToParent":true,
+    "points":[],
+    "lineColor":0,
+    "lineShade":0,
+    "lineOpacity":255,
+    "fillColor":0,
+    "fillShade":0,
+    "fillOpacity":255,
+    "loops":true,
+  };
+  textureNum++;
+  zIndex.push(newTexture);
+  textures[id]=newTexture;
+  setTexture(id);
+  updateAllTextures();
+}
 function setTexture(id){
   currentTexture=texture["id"];
+  
 }
 function raiseTexture(id){
-  
+  var index=zIndex.indexOf(textures[id]);
+  if (index>0) {
+    var temp=zIndex[index-1];
+    zIndex[index-1]=zIndex[index];
+    zIndex[index]=temp;
+  }
 }
 function lowerTexture(id){
-  
+  var index=zIndex.indexOf(textures[id]);
+  if (index<zIndex.length-1) {
+    var temp=zIndex[index+1];
+    zIndex[index+1]=zIndex[index];
+    zIndex[index]=temp;
+  }
 }
 function updateTextureList(){
   var list=document.getElementById("texture_list");
-  for (var key in textures){
-    var texture=textures[key];
+  for (var texture of zIndex){
     var li=document.createElement("li");
     li.innerHTML=`<canvas class="textureIcon" id="textureIcon${texture["id"]}" style="height:50px;width:50px" textureid="textureIcon${texture["id"]}"><button onclick="setTexture(${texture["id"]})">texture${texture["id"]}</button><button onclick="raiseTexture(${texture["id"]})">↑</button><button onclick="lowerTexture(${texture["id"]})">↓</button>`;
     list.appendChild(li);
@@ -473,6 +518,7 @@ function updateTextureList(){
     }
   }
 }
+updateTextureList();
 function drawTextureOnCanvas(texture,canvas){
   if (texture["type"]==0){
     var image=texture["image"];
