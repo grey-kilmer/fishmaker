@@ -84,6 +84,9 @@ function importTexture(){
       if (Math.min(imageElement.width,imageElement.height)<100){
         document.getElementById("texture_import").style.imageRendering="pixelated";
       }
+      else{
+        document.getElementById("texture_import").style.imageRendering="default";
+      }
     },
     false,
   );
