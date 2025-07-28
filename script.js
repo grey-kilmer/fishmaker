@@ -442,7 +442,7 @@ function updateTextureList(){
   }
   for (var texture of zIndex){
     var li=document.createElement("li");
-    li.innerHTML=`<canvas class="textureIcon" id="textureIcon${texture["id"]}" style="height:50px;width:50px" textureid="${texture["id"]}"><button onclick="setTexture(${texture["id"]})">texture ${texture["id"]}</button><button onclick="raiseTexture(${texture["id"]})">↑</button><button onclick="lowerTexture(${texture["id"]})">↓</button></li>`;
+    li.innerHTML=`<canvas class=textureIcon id=textureIcon${texture["id"]} style=height:50px;width:50px textureid=${texture["id"]}><button onclick="setTexture(${texture["id"]})">texture ${texture["id"]}</button><button onclick="raiseTexture(${texture["id"]})">↑</button><button onclick="lowerTexture(${texture["id"]})">↓</button></li>`;
     list.appendChild(li);
   }
   for (var canvas of document.querySelectorAll(".textureIcon")){
