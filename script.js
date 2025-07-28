@@ -312,7 +312,9 @@ canvas.onmouseup=function(event){
   else {
     canvas.style.cursor="default";
   }
+  updateAllTextures();
 }
+var cooldown=0
 canvas.onmousemove=function(event){
   var x=2*parseInt(event.offsetX);
   var y=2*parseInt(event.offsetY);
@@ -321,7 +323,13 @@ canvas.onmousemove=function(event){
     document.getElementById("boney").value=y;
     currentBone["x"]=x;
     currentBone["y"]=y;
-    updateAllTextures();
+    if (cooldown==0){
+      updateAllTextures();
+      cooldown=5;
+    }
+    else {
+      cooldown--;
+    }
   }
   else {
     if (findBoneAt(x,y)){
