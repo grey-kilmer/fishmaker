@@ -481,7 +481,7 @@ function updateTextureList(){
     list.appendChild(li);
   }
   for (var canvas of document.querySelectorAll(".textureIcon")){
-    var texture=textures[canvas.attributes.getNamedItem("textureid")];
+    var texture=textures[canvas.attributes.getNamedItem("textureid").value];
     var context=canvas.getContext("2d");
     if (texture["type"]==0){
       image=texture["image"];
