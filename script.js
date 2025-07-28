@@ -74,28 +74,6 @@ function reselect(select, value){
 function updateName(){
   name=document.getElementById("name").value;
 }
-function importTexture(){
-  var imageElement=currentTexture["image"];
-  var image=document.getElementById("texture_import").files[0];
-  var reader = new FileReader();
-  reader.addEventListener("load",()=>{
-      imageElement.src=reader.result;
-      document.getElementById("texture_import").style.backgroundImage="url("+reader.result+")";
-      if (Math.min(imageElement.width,imageElement.height)<100){
-        document.getElementById("texture_import").style.imageRendering="pixelated";
-      }
-      else{
-        document.getElementById("texture_import").style.imageRendering="auto";
-      }
-    },
-    false,
-  );
-  if (image) {
-    reader.readAsDataURL(image);
-  }
-  updateAllTextures();
-  updateTextureList();
-}
 function renameBone(){
   currentBone["name"]=document.getElementById("bonename").value;
   updateBoneList();
@@ -587,4 +565,26 @@ function updateBitmapBone(){
 function updateScale(){
   currentTexture["scale"]=document.getElementById("bitmap_scale").value/100;
   updateAllTextures();
+}
+function importTexture(){
+  var imageElement=currentTexture["image"];
+  var image=document.getElementById("texture_import").files[0];
+  var reader = new FileReader();
+  reader.addEventListener("load",()=>{
+      imageElement.src=reader.result;
+      document.getElementById("texture_import").style.backgroundImage="url("+reader.result+")";
+      if (Math.min(imageElement.width,imageElement.height)<100){
+        document.getElementById("texture_import").style.imageRendering="pixelated";
+      }
+      else{
+        document.getElementById("texture_import").style.imageRendering="auto";
+      }
+    },
+    false,
+  );
+  if (image) {
+    reader.readAsDataURL(image);
+  }
+  updateAllTextures();
+  updateTextureList();
 }
