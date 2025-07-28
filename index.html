@@ -119,7 +119,7 @@
         <div id="bitmap" class="duo">
           <center>
             Texture: <input type="file" id="texture_import" onchange="importTexture()"><br>
-            <input value=on type=checkbox id=pointsToParent onchange=updatePointingDirection()>: <span id="pointsToParentDialogue">Points to Parent</span><br>
+            <input type=checkbox id=pointsToParent onchange=updatePointingDirection() checked>: <span id="pointsToParentDialogue">Points to Parent</span><br>
             Bone: <select class="boneSelector" id="bitmap_bone" onchange="updateBitmapBone()"></select><br>
             Scale: <input type="range" min=0 max=500 class=linked value=100 name=scale oninput=updateLinks();updateScale()><input id=bitmap_scale type=number name=scale class=linked value=100 onchange=updateLinks();updateScale()>%<br>
           </center>
