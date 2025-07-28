@@ -437,6 +437,9 @@ function lowerTexture(id){
 }
 function updateTextureList(){
   var list=document.getElementById("texture_list");
+  while (list.childNodes.length>0){
+    list.childNodes[0].remove();
+  }
   for (var texture of zIndex){
     var li=document.createElement("li");
     li.innerHTML=`<canvas class="textureIcon" id="textureIcon${texture["id"]}" style="height:50px;width:50px" textureid="${texture["id"]}"><button onclick="setTexture(${texture["id"]})">texture${texture["id"]}</button><button onclick="raiseTexture(${texture["id"]})">↑</button><button onclick="lowerTexture(${texture["id"]})">↓</button>`;
