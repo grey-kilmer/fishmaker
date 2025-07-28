@@ -579,12 +579,12 @@ function importTexture(){
       else{
         document.getElementById("texture_import").style.imageRendering="auto";
       }
+      updateAllTextures();
     },
     false,
   );
   if (image) {
     reader.readAsDataURL(image);
   }
-  updateAllTextures();
   updateTextureList();
 }
