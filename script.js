@@ -416,7 +416,7 @@ function createTexture(){
   updateAllTextures();
 }
 function setTexture(id){
-  currentTexture=texture["id"];
+  currentTexture=textures[id];
   
 }
 function raiseTexture(id){
