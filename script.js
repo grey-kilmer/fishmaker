@@ -99,7 +99,7 @@ function importTexture(){
 function renameBone(){
   currentBone["name"]=document.getElementById("bonename").value;
   updateBoneList();
-  drawBone();
+  updateAllTextures();
 }
 function reparentBone(){
   var newParentId=document.getElementById("parent_bone").value;
@@ -107,10 +107,10 @@ function reparentBone(){
   childList.splice(childList.indexOf(currentBone),1);
   currentBone["parent_bone"]=newParentId;
   boneList[newParentId]["child_bones"].push(currentBone);
-  updateBoneList();
-  drawBone();
   reselect(document.getElementById("parent_bone"),newParentId);
   reselect(document.getElementById("bitmap_bone"),currentBone["id"]);
+  updateBoneList();
+  updateAllTextures();
   updateBitmapBone();
 }
 function reparentBonePearl(bone,newParentId){
@@ -119,17 +119,17 @@ function reparentBonePearl(bone,newParentId){
   bone["parent_bone"]=newParentId;
   boneList[newParentId]["child_bones"].push(bone);
   updateBoneList();
-  drawBone();
+  updateAllTextures();
 }
 function updateBonePosition(){
   currentBone["x"]=Number.parseInt(document.getElementById("bonex").value);
   currentBone["y"]=Number.parseInt(document.getElementById("boney").value);
-  drawBone();
+  updateAllTextures();
 }
 function updateVariance(){
   currentBone["CVariance"]=Number.parseInt(document.getElementById("clockwise_variance").value);
   currentBone["CCVariance"]=Number.parseInt(document.getElementById("counter_clockwise_variance").value);
-  drawBone();
+  updateAllTextures();
 }
 function updateLinks(){
   for (var x in links){
@@ -228,9 +228,9 @@ function addBone(){
   document.getElementById("clockwise_variance").value=currentBone["CVariance"];
   document.getElementById("counter_clockwise_variance").value=currentBone["CCVariance"];
   updateBoneList();
-  drawBone();
   reselect(document.getElementById("parent_bone"),parentId);
   reselect(document.getElementById("bitmap_bone"),currentBone["id"]);
+  updateAllTextures();
 }
 function deleteBone(){
   var parentId=currentBone["parent_bone"]
@@ -244,6 +244,7 @@ function deleteBone(){
   updateBoneList();
   reselect(document.getElementById("parent_bone"),boneList[parentId]["parent_id"]);
   reselect(document.getElementById("bitmap_bone"),currentBone["id"]);
+  updateAllTextures();
   updateBitmapBone();
 } 
 function setBone(id){
@@ -273,10 +274,7 @@ function hasLowerSibling(bone){
   var siblings=boneList[bone["parent_bone"]]["child_bones"];
   return siblings[siblings.length-1]!=bone;
 }
-function drawBone(){
-  var bone=rootBone;
-  var canvas=document.getElementById("editor").getContext("2d");
-  canvas.clearRect(0,0,1600,600);
+function updateAllTexturesPearl(bone,canvas){
   canvas.beginPath();
   var radius=10;
   if (bone==currentBone){
@@ -290,38 +288,7 @@ function drawBone(){
   canvas.stroke();
   canvas.strokeStyle="white";
   for (var childBone of bone["child_bones"]){
-    drawBonePearl(childBone,canvas);
-    var childRadius=10;
-    if (childBone==currentBone){
-      childRadius=15;
-    }
-    var angleToChild=Math.atan2(childBone["y"]-bone["y"],childBone["x"]-bone["x"]);
-    canvas.beginPath();
-    canvas.moveTo(radius*Math.cos(angleToChild+Math.PI/2)+bone["x"],radius*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
-    canvas.lineTo(childBone["x"]+childRadius*Math.cos(angleToChild+Math.PI),childBone["y"]+childRadius*Math.sin(angleToChild+Math.PI));
-    canvas.stroke();
-    canvas.beginPath();
-    canvas.moveTo(radius*Math.cos(angleToChild-Math.PI/2)+bone["x"],radius*Math.sin(angleToChild-Math.PI/2)+bone["y"]);
-    canvas.lineTo(childBone["x"]+childRadius*Math.cos(angleToChild+Math.PI),childBone["y"]+childRadius*Math.sin(angleToChild+Math.PI));
-    canvas.stroke();
-  }
-  updateAllTextures();
-}
-function drawBonePearl(bone,canvas){
-  canvas.beginPath();
-  var radius=10;
-  if (bone==currentBone){
-    canvas.strokeStyle="#FDD";
-    radius=15;
-  }
-  else{
-    canvas.strokeStyle="white";
-  }
-  canvas.arc(bone["x"],bone["y"],radius,0,2*Math.PI);
-  canvas.stroke();
-  canvas.strokeStyle="white";
-  for (var childBone of bone["child_bones"]){
-    drawBonePearl(childBone,canvas);
+    updateAllTexturesPearl(childBone,canvas);
     var childRadius=10;
     if (childBone==currentBone){
       childRadius=15;
@@ -337,7 +304,7 @@ function drawBonePearl(bone,canvas){
     canvas.stroke();
   }
 }
-drawBone();
+updateAllTextures();
 var canvas=document.getElementById("editor");
 var isDraggingBone=false;
 function findBoneAt(x,y){
@@ -354,7 +321,7 @@ canvas.onmousedown=function(event){
   var bone=findBoneAt(x,y);
   if (bone){
     setBone(bone["id"]);
-    drawBone();
+    updateAllTextures();
     isDraggingBone=true;
     canvas.style.cursor="grabbing";
   }
@@ -376,7 +343,7 @@ canvas.onmousemove=function(event){
     document.getElementById("boney").value=y;
     currentBone["x"]=x;
     currentBone["y"]=y;
-    drawBone();
+    updateAllTextures();
   }
   else {
     if (findBoneAt(x,y)){
@@ -578,6 +545,37 @@ function drawTextureOnCanvas(texture,canvas){
   }
 }
 function updateAllTextures(){
+  var bone=rootBone;
+  var canvas=document.getElementById("editor").getContext("2d");
+  canvas.clearRect(0,0,1600,600);
+  canvas.beginPath();
+  var radius=10;
+  if (bone==currentBone){
+    canvas.strokeStyle="#FDD";
+    radius=15;
+  }
+  else{
+    canvas.strokeStyle="white";
+  }
+  canvas.arc(bone["x"],bone["y"],radius,0,2*Math.PI);
+  canvas.stroke();
+  canvas.strokeStyle="white";
+  for (var childBone of bone["child_bones"]){
+    updateAllTexturesPearl(childBone,canvas);
+    var childRadius=10;
+    if (childBone==currentBone){
+      childRadius=15;
+    }
+    var angleToChild=Math.atan2(childBone["y"]-bone["y"],childBone["x"]-bone["x"]);
+    canvas.beginPath();
+    canvas.moveTo(radius*Math.cos(angleToChild+Math.PI/2)+bone["x"],radius*Math.sin(angleToChild+Math.PI/2)+bone["y"]);
+    canvas.lineTo(childBone["x"]+childRadius*Math.cos(angleToChild+Math.PI),childBone["y"]+childRadius*Math.sin(angleToChild+Math.PI));
+    canvas.stroke();
+    canvas.beginPath();
+    canvas.moveTo(radius*Math.cos(angleToChild-Math.PI/2)+bone["x"],radius*Math.sin(angleToChild-Math.PI/2)+bone["y"]);
+    canvas.lineTo(childBone["x"]+childRadius*Math.cos(angleToChild+Math.PI),childBone["y"]+childRadius*Math.sin(angleToChild+Math.PI));
+    canvas.stroke();
+  }
   for (textureID in textures){
     drawTextureOnCanvas(textures[textureID],document.getElementById("editor"));
   }
