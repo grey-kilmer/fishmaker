@@ -78,7 +78,15 @@ function importTexture(){
   var imageElement=currentTexture["image"];
   var image=document.getElementById("texture_import").files[0];
   var reader = new FileReader();
-  reader.addEventListener("load",() =>{document.getElementById("texture_import").style.backgroundImage="url("+reader.result+")";imageElement.src=reader.result},false,);
+  reader.addEventListener("load",()=>{
+      imageElement.src=reader.result;
+      document.getElementById("texture_import").style.backgroundImage="url("+reader.result+")";
+      if (Math.min(imageElement.width,imageElement.height)<100){
+        document.getElementById("texture_import").style.imageRendering="pixelated";
+      }
+    },
+    false,
+  );
   if (image) {
     reader.readAsDataURL(image);
   }
