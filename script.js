@@ -253,21 +253,20 @@ function hasLowerSibling(bone){
   return siblings[siblings.length-1]!=bone;
 }
 function updateAllTexturesPearl(bone,canvas){
-  canvas.beginPath();
   var radius=10;
   if (bone==currentBone){
     canvas.strokeStyle="#FDD";
     radius=15;
     var parentBone=boneList[currentBone["parent_bone"]];
     var angleToChild=Math.atan2(bone["y"]-parentBone["y"],bone["x"]-parentBone["x"]);
-    console.log(Math.sqrt(Math.pow(bone["x"]-parentBone["x"],2)+Math.pow(bone["y"]-parentBone["y"],2)));
-    console.log(angleToChild-bone["CVariance"]*Math.PI/180);
-    console.log(angleToChild+bone["CCVariance"]*Math.PI/180);
+    canvas.beginPath();
     canvas.arc(parentBone["x"],parentBone["y"],Math.sqrt(Math.pow(bone["x"]-parentBone["x"],2)+Math.pow(bone["y"]-parentBone["y"],2)),angleToChild-bone["CVariance"]*Math.PI/180,angleToChild+bone["CCVariance"]*Math.PI/180);
+    canvas.stroke();
   }
   else{
     canvas.strokeStyle="white";
   }
+  canvas.beginPath();
   canvas.arc(bone["x"],bone["y"],radius,0,2*Math.PI);
   canvas.stroke();
   canvas.strokeStyle="white";
