@@ -550,6 +550,7 @@ function updateAllTextures(){
   if (bone==currentBone){
     canvas.strokeStyle="#FDD";
     radius=15;
+  }
   else{
     canvas.strokeStyle="white";
   }
