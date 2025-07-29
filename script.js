@@ -261,7 +261,7 @@ function updateAllTexturesPearl(bone,canvas){
     if (bone!=rootBone){
       var parentBone=boneList[currentBone["parent_bone"]];
       var angleToChild=Math.atan2(bone["y"]-parentBone["y"],bone["x"]-parentBone["x"]);
-      canvas.arc(parentBone["x"],parentBone["y"],Math.sqrt(Math.pow(bone["x"]-parentBone["x"],2)+Math.pow(bone["y"]-parentBone["y"],2)),angleToChild-bone["CVariance"],angleToChild+bone["CCVariance"]);
+      canvas.arc(parentBone["x"],parentBone["y"],Math.sqrt(Math.pow(bone["x"]-parentBone["x"],2)+Math.pow(bone["y"]-parentBone["y"],2)),angleToChild-bone["CVariance"]*pi/180,angleToChild+bone["CCVariance"]*pi/180);
     }
   }
   else{
