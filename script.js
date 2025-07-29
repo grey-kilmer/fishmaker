@@ -258,11 +258,10 @@ function updateAllTexturesPearl(bone,canvas){
   if (bone==currentBone){
     canvas.strokeStyle="#FDD";
     radius=15;
-    if (bone!=rootBone){
-      var parentBone=boneList[currentBone["parent_bone"]];
-      var angleToChild=Math.atan2(bone["y"]-parentBone["y"],bone["x"]-parentBone["x"]);
-      canvas.arc(parentBone["x"],parentBone["y"],Math.sqrt(Math.pow(bone["x"]-parentBone["x"],2)+Math.pow(bone["y"]-parentBone["y"],2)),angleToChild-bone["CVariance"]*pi/180,angleToChild+bone["CCVariance"]*pi/180);
-    }
+    var parentBone=boneList[currentBone["parent_bone"]];
+    var angleToChild=Math.atan2(bone["y"]-parentBone["y"],bone["x"]-parentBone["x"]);
+    canvas.arc(parentBone["x"],parentBone["y"],Math.sqrt(Math.pow(parentBone["x"],2)+Math.pow(parentBone["y"],2)),angleToChild-bone["CVariance"]*Math.PI/180,angleToChild+bone["CCVariance"]*Math.PI/180);
+  }
   }
   else{
     canvas.strokeStyle="white";
@@ -552,12 +551,6 @@ function updateAllTextures(){
   if (bone==currentBone){
     canvas.strokeStyle="#FDD";
     radius=15;
-    if (bone!=rootBone){
-      var parentBone=boneList[currentBone["parent_bone"]];
-      var angleToChild=Math.atan2(bone["y"]-parentBone["y"],bone["x"]-parentBone["x"]);
-      canvas.arc(parentBone["x"],parentBone["y"],Math.sqrt(Math.pow(parentBone["x"],2)+Math.pow(parentBone["y"],2)),angleToChild-bone["CVariance"],angleToChild+bone["CCVariance"]);
-    }
-  }
   else{
     canvas.strokeStyle="white";
   }
