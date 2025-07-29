@@ -602,3 +602,13 @@ function importTexture(){
     reader.readAsDataURL(image);
   }
 }
+function updatePointingDirection(){
+  var newVal=!currentTexture["pointsToParent"];
+  currentTexture["pointsToParent"]=newVal;
+  if (newVal){
+    document.getElementById("pointsToParentDialogue").innerHTML="points <b>TO</b> parent";
+  }
+  else{
+    document.getElementById("pointsToParentDialogue").innerHTML="points <b>AWAY</b> from parent";
+  }
+}
