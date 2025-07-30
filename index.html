@@ -147,7 +147,7 @@
             Fill Color: <select class="palatte_selector" id="fillColor" onchange="updateFillColor()"></select><select id="fillShade" onchange="updateFillShade()"><option value=1>Light</option><option selected value=0>-</option><option value=-1>Dark</option></select><br>
             Fill Opacity: <input type="range" min="0" max="255" class="linked" name="fill_opacity" oninput="updateLinks();updateFillOpacity()" value=255> <input id="fillOpacity" type="number" class="linked" name="fill_opacity" value=255 onchange="updateLinks();updateFillOpacity()"><br>
           </center>
-        </div>
+        </div><br>
         <button onclick="createTexture()">+</button><button onclick="deleteTexture()">-</button><br>
         <ul id="texture_list"></ul>
       </center>
