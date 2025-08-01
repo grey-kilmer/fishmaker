@@ -133,23 +133,24 @@
             Texture: <input type="file" id="texture_import" onchange="importTexture()"><br>
             <input type=checkbox id=pointsToParent onchange=updatePointingDirection() checked>: <span id="pointsToParentDialogue">points <b>TO</b> parent</span><br>
             Bone: <select class="boneSelector" id="bitmap_bone" onchange="updateBitmapBone()"></select><br>
-            Scale: <input type="range" min=0 max=500 class=linked value=100 name=scale oninput=updateLinks();updateScale()><input id=bitmap_scale type=number name=scale class=linked value=100 onchange=updateLinks();updateScale()>%<br>
+            Scale: <input type="range" min=1 max=500 class=linked value=100 name=scale oninput=updateLinks();updateScale()><input id=bitmap_scale type=number name=scale class=linked value=100 onchange=updateLinks();updateScale()>%<br>
           </center>
         </div>
         <div id="spline" class="duo">
           <center>
-            <button id="addsplinepoint">+</button><br>
+            <button onclick="createSplinePoint()">+</button><br>
+            <button onclick="deleteSplinePoint()">-</button><br>
             Radius: <input type="number" name="r" id="r" onchange="updateRadius()"><br>
-            Theta: <input type="range" min="0" max="180" class="linked" value="0" name="theta" oninput="updateLinks()" ><input type="number" name="theta" class="linked" value="0" onchange="updateLinks()"><br>
+            Theta: <input type="range" min="0" max="359" class="linked" value="0" name="theta" oninput="updateLinks()" ><input type="number" name="theta" class="linked" value="0" onchange="updateLinks()"><br>
             Bone: <select class="boneSelector" id="splinebone" onchange="updateSplineBone()"></select><br>
             <ul id="spline_points" class="list">
               
             </ul><br>
-            Loop: <input type="checkbox" id="splineLoops" onchange="updateIfSplineLoops()"><br>
+            Loop: <input checked type="checkbox" id="splineLoops" onchange="updateIfSplineLoops()"><br>
             Line Width: <input type="number" id="lineWidth" onchange="updateLineWidth()"><br>
             Line Color: <select class="palatte_selector" id="lineColor" onchange="updateLineColor()"></select><select id="lineShade" onchange="updateLineShade()"><option value=1>Light</option><option selected value=0>-</option><option value=-1>Dark</option></select><br>
             Line Opacity: <input type="range" min="0" max="255" class="linked" name="line_opacity" oninput="updateLinks();updateLineOpacity()" value=255> <input id="lineOpacity" type="number" class="linked" name="line_opacity" value=255 onchange="updateLinks();updateLineOpacity()"><br>
-            Fill: <input type="checkbox" id="splineFills" onchange="updateIfSplineFills()"><br>
+            Fill: <input checked type="checkbox" id="splineFills" onchange="updateIfSplineFills()"><br>
             Fill Color: <select class="palatte_selector" id="fillColor" onchange="updateFillColor()"></select><select id="fillShade" onchange="updateFillShade()"><option value=1>Light</option><option selected value=0>-</option><option value=-1>Dark</option></select><br>
             Fill Opacity: <input type="range" min="0" max="255" class="linked" name="fill_opacity" oninput="updateLinks();updateFillOpacity()" value=255> <input id="fillOpacity" type="number" class="linked" name="fill_opacity" value=255 onchange="updateLinks();updateFillOpacity()"><br>
           </center>
