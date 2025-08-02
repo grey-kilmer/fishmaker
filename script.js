@@ -670,5 +670,5 @@ function createSplinePoint(){
   }
   currentPoint=newPoint;
   currentTexture["points"].append(newPoint);
-  
+  updateAllTextures();
 }
