@@ -30,12 +30,14 @@ var currentTexture={
   "fillShade":0,
   "fillOpacity":255,
   "loops":true,
+  "fills":false
 };
 var textureNum=1;
 var zIndex=[currentTexture];
 var textures={
   "T0":currentTexture
 };
+var currentSplinePoint=null;
 var animationStyle=0;
 var animationDefintions=[];
 var speed=0;
@@ -290,11 +292,19 @@ function updateAllTexturesPearl(bone,canvas){
 updateAllTextures();
 var canvas=document.getElementById("editor");
 var isDraggingBone=false;
+var isDragginSplinePoint=false;
 function findBoneAt(x,y){
   for (var boneId in boneList){
     var bone=boneList[boneId];
     if (Math.abs(bone["x"]-x)<20&&Math.abs(bone["y"]-y)<20){
       return bone;
+    }
+  }
+}
+function findSplinePointAt(x,y){
+  for (var point of currentTexture["points"]){
+    if (Math.abs(calculateX(point)-x)<20&&Math.abs(calculateY(point)-y)<20){
+      return point;
     }
   }
 }
@@ -307,19 +317,23 @@ canvas.onmousedown=function(event){
     updateAllTextures();
     isDraggingBone=true;
     canvas.style.cursor="grabbing";
+    return;
+  }
+  var splinePoint=findSplinePointAt(x,y);
+  if (splinePoint){
+    setSplinePoint(splinePoint);
+    updateAllTextures();
+    isDragginSplinePoint=true;
+    canvas.style.cursor="grabbing";
+    return;
   }
 }
 canvas.onmouseup=function(event){
   isDraggingBone=false;
-  if (isDraggingBone){
-    canvas.style.cursor="grab";
-  }
-  else {
-    canvas.style.cursor="default";
-  }
+  isDraggingSplinePoint=false;
+  canvas.style.cursor="default";
   updateAllTextures();
 }
-var cooldown=0
 canvas.onmousemove=function(event){
   var x=2*parseInt(event.offsetX);
   var y=2*parseInt(event.offsetY);
@@ -328,16 +342,21 @@ canvas.onmousemove=function(event){
     document.getElementById("boney").value=y;
     currentBone["x"]=x;
     currentBone["y"]=y;
-    if (cooldown==0){
-      updateAllTextures();
-      cooldown=3;
+    updateAllTextures();
+  }
+  else if (isDraggingSplinePoint){
+    var r=Math.sqrt(Math.pow(calculateX(currentSplinePoint)-currentSplinePoint["bone"]["x"],2)+Math.pow(calculateY(currentSplinePoint)-currentSplinePoint["bone"]["y"],2))
+    var theta=Math.atan2(calculateY(currentSplinePoint)-currentSplinePoint["bone"]["y"],calculateX(currentSplinePoint)-currentSplinePoint["bone"]["x"])
+    document.getElementById("r").value=r;
+    for (var element of document.querySelectorAll(".theta")){
+      element.value=theta;
     }
-    else {
-      cooldown--;
-    }
+    currentSplinePoint["r"]=r;
+    currentSplinePoint["theta"]=theta;
+    updateAllTextures();
   }
   else {
-    if (findBoneAt(x,y)){
+    if (findBoneAt(x,y)||findSplinePointAt(x,y)){
       canvas.style.cursor="grab";
     }
     else {
@@ -347,7 +366,9 @@ canvas.onmousemove=function(event){
 }
 canvas.onmouseout=function(event){
   isDraggingBone=false;
+  isDraggingSplinePoint=false;
   canvas.style.cursor="default";
+  updateAllTextures();
 }
 function decimaltoHex(num){
   if (num>=255){return "FF";}
@@ -419,6 +440,7 @@ function createTexture(){
   textures[id]=newTexture;
   setTexture(id);
   updateAllTextures();
+  updateTextureList();
 }
 function setTexture(id){
   currentTexture=textures[id];
@@ -449,9 +471,9 @@ function updateTextureList(){
     var li=document.createElement("li");
     li.innerHTML=`<div>
       <canvas class=textureIcon id=textureIcon${texture["id"]} style=height:50px;width:50px textureid=${texture["id"]}></canvas>
-      <button onclick=setTexture(${texture["id"]})>texture ${texture["id"]}</button>
-      <button onclick=raiseTexture(${texture["id"]})>↑</button>
-      <button onclick=lowerTexture(${texture["id"]})>↓</button>
+      <button onclick=setTexture("${texture["id"]}")>texture ${texture["id"]}</button>
+      <button onclick=raiseTexture("${texture["id"]}")>↑</button>
+      <button onclick=lowerTexture("${texture["id"]}")>↓</button>
     </div>`;
     list.appendChild(li);
   }
@@ -469,8 +491,8 @@ function updateTextureList(){
       var x=[];
       var y=[];
       for (var point of texture["points"]){
-        x.push(point["x"]);
-        y.push(point["y"]);
+        x.push(calculateX(point));
+        y.push(calculateY(point));
       }
       var xOffset=min(x);
       var yOffset=min(y);
@@ -483,12 +505,12 @@ function updateTextureList(){
       context.strokeStyle=getColor(texture["lineColor"],texture["lineShade"]);
       context.lineCap="round";
       firstPoint=texture["points"][0]
-      context.moveTo(firstPoint["x"]-xOffset, firstPoint["y"]-yOffset);
+      context.moveTo(calculateX(firstPoint)-xOffset, calculateY(firstPoint)-yOffset);
       for (var i=1;i<texture["points"].length;i++){
         var point=texture["points"][i];
-        context.lineTo(point["x"]-xOffset, point["y"]-yOffset);
+        context.lineTo(calculateX(point)-xOffset, calculateY(point)-yOffset);
       }
-      context.lineTo(firstPoint["x"]-xOffset, firstPoint["y"]-yOffset);
+      context.lineTo(calculateX(firstPoint)-xOffset, calculateY(firstPoint)-yOffset);
       context.stroke();
       context.restore();
       context.save();
@@ -528,20 +550,43 @@ function drawTextureOnCanvas(texture,canvas){
     context.strokeStyle=getColor(texture["lineColor"],texture["lineShade"]);
     context.lineCap="round";
     firstPoint=texture["points"][0]
-    context.moveTo(firstPoint["x"], firstPoint["y"]);
+    context.moveTo(calculateX(firstPoint), calculateY(firstPoint));
     for (var i=1;i<texture["points"].length;i++){
       var point=texture["points"][i];
-      context.lineTo(point["x"], point["y"]);
+      context.lineTo(calculateX(point), calculateY(point)]);
     }
-    if (texture["loops"]) context.lineTo(firstPoint["x"], firstPoint["y"]);
+    if (texture["loops"]) context.lineTo(calculateX(firstPoint), calculateY(firstPoint));
     context.stroke();
     context.restore();
-    context.save();
-    context.globalAlpha=texture["fillOpacity"]/255;
-    context.fillStyle=getColor(texture["fillColor"],texture["fillShade"]);
-    context.fill();
-    context.restore();
+    if (texture["fills"]){
+      context.save();
+      context.globalAlpha=texture["fillOpacity"]/255;
+      context.fillStyle=getColor(texture["fillColor"],texture["fillShade"]);
+      context.fill();
+      context.restore();
+    }
+    if (texture==currentTexture){
+      for (var point of texture["point"]){
+        var width=10;
+        if (point==currentPoint) {width=15}
+        context.strokeRect(calculateX(point)-width,calculateY(point)-width,width*2,width*2);
+        context.beginPath();
+        context.moveTo(calculateX(point),calculateY(point));
+        context.lineTo(point["bone"]["x"],point["bone"]["y"]);
+        context.stroke();
+      }
+    }
   }
+}
+function calculateX(splinePoint){
+  return splinePoint["r"]*Math.cos(splinePoint["theta"])+splinePoint["bone"]["x"];
+}
+function calculateY(splinePoint){
+  return splinePoint["r"]*Math.sin(splinePoint["theta"])+splinePoint["bone"]["y"];
+}
+function drawSplinePoint(splinePoint){
+  var canvas=document.getElementById("editor").getContext("2d");
+  
 }
 function updateAllTextures(){
   var bone=rootBone;
@@ -575,8 +620,8 @@ function updateAllTextures(){
     canvas.lineTo(childBone["x"]+childRadius*Math.cos(angleToChild+Math.PI),childBone["y"]+childRadius*Math.sin(angleToChild+Math.PI));
     canvas.stroke();
   }
-  for (textureID in textures){
-    drawTextureOnCanvas(textures[textureID],document.getElementById("editor"));
+  for (texture in zIndex){
+    drawTextureOnCanvas(texture,document.getElementById("editor"));
   }
 }
 function updateBitmapBone(){
@@ -616,4 +661,14 @@ function updatePointingDirection(){
   else{
     document.getElementById("pointsToParentDialogue").innerHTML="points <b>AWAY</b> from parent";
   }
+}
+function createSplinePoint(){
+  var newPoint={
+    "r":1,
+    "theta":0,
+    "bone":currentBone
+  }
+  currentPoint=newPoint;
+  currentTexture["points"].append(newPoint);
+  
 }
