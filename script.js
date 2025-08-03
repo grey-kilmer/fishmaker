@@ -12,7 +12,7 @@ var rootBone={
 var boneList={
     "#0":rootBone
 };
-var colorList=["#7F0000","#7F3f00","#7F7F00","#007F00","#00007F","#3f007F"];
+var colorList=["#7F0000","#7F3f00","#7F7F00","#007F00","#00007F","#3F007F"];
 var boneNum=1;
 var currentBone=rootBone;
 var currentTexture={
@@ -549,7 +549,7 @@ function drawTextureOnCanvas(texture,canvas){
     context.beginPath();
     context.strokeStyle=getColor(texture["lineColor"],texture["lineShade"]);
     context.lineCap="round";
-    firstPoint=texture["points"][0]
+    firstPoint=currentTexture["points"][0];
     context.moveTo(calculateX(firstPoint), calculateY(firstPoint));
     for (var i=1;i<texture["points"].length;i++){
       var point=texture["points"][i];
