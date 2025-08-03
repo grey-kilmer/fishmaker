@@ -553,7 +553,7 @@ function drawTextureOnCanvas(texture,canvas){
     context.moveTo(calculateX(firstPoint), calculateY(firstPoint));
     for (var i=1;i<texture["points"].length;i++){
       var point=texture["points"][i];
-      context.lineTo(calculateX(point), calculateY(point)]);
+      context.lineTo(calculateX(point), calculateY(point));
     }
     if (texture["loops"]) context.lineTo(calculateX(firstPoint), calculateY(firstPoint));
     context.stroke();
