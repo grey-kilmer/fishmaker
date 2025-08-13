@@ -47,6 +47,8 @@ var minDepth=0;
 var prefersBottomFeeding=false;
 var abilities=[];
 var links={};
+var isDraggingBone=false;
+var isDraggingSplinePoint=false;
 linkedItems=document.querySelectorAll(".linked");
 for (var x of linkedItems){
   links[x.name]={
