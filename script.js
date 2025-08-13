@@ -620,8 +620,8 @@ function updateAllTextures(){
     canvas.lineTo(childBone["x"]+childRadius*Math.cos(angleToChild+Math.PI),childBone["y"]+childRadius*Math.sin(angleToChild+Math.PI));
     canvas.stroke();
   }
-  for (texture in zIndex){
-    drawTextureOnCanvas(texture,document.getElementById("editor"));
+  for (id in zIndex){
+    drawTextureOnCanvas(textures[id],document.getElementById("editor"));
   }
 }
 function updateBitmapBone(){
