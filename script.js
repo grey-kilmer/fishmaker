@@ -352,8 +352,8 @@ canvas.onmousemove=function(event){
     updateAllTextures();
   }
   else if (isDraggingSplinePoint){
-    var r=Math.sqrt(Math.pow(calculateX(currentSplinePoint)-currentSplinePoint["bone"]["x"],2)+Math.pow(calculateY(currentSplinePoint)-currentSplinePoint["bone"]["y"],2))
-    var theta=Math.atan2(calculateY(currentSplinePoint)-currentSplinePoint["bone"]["y"],calculateX(currentSplinePoint)-currentSplinePoint["bone"]["x"])
+    var r=Math.sqrt(Math.pow(x-currentSplinePoint["bone"]["x"],2)+Math.pow(y-currentSplinePoint["bone"]["y"],2))
+    var theta=Math.atan2(y-currentSplinePoint["bone"]["y"],x-currentSplinePoint["bone"]["x"])
     document.getElementById("r").value=r;
     for (var element of document.querySelectorAll(".theta")){
       element.value=theta;
