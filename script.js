@@ -321,13 +321,15 @@ canvas.onmousedown=function(event){
     canvas.style.cursor="grabbing";
     return;
   }
-  var splinePoint=findSplinePointAt(x,y);
-  if (splinePoint){
-    setSplinePoint(splinePoint);
-    updateAllTextures();
-    isDragginSplinePoint=true;
-    canvas.style.cursor="grabbing";
-    return;
+  else{
+    var splinePoint=findSplinePointAt(x,y);
+    if (splinePoint){
+      setSplinePoint(splinePoint);
+      updateAllTextures();
+      isDragginSplinePoint=true;
+      canvas.style.cursor="grabbing";
+      return;
+    }
   }
 }
 canvas.onmouseup=function(event){
