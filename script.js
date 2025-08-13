@@ -671,7 +671,7 @@ function updatePointingDirection(){
 }
 function createSplinePoint(){
   var newPoint={
-    "r":1,
+    "r":10,
     "theta":0,
     "bone":currentBone
   }
