@@ -672,3 +672,29 @@ function createSplinePoint(){
   currentTexture["points"].append(newPoint);
   updateAllTextures();
 }
+function cartesify(p){
+  return [calculateX(p),calculateY(p)];
+}
+function cartesifyList(pList){
+  out=[];
+  for (var p of pList){
+    out.push([calculateX(p),calculateY(p)]);
+  }
+  return out;
+}
+function lerp(p1,p2,t){
+  var p1x=p1[0];
+  var p2x=p2[0];
+  var p1y=p1[1];
+  var p2y=p1[1];
+  var x=t*(p2x-p1x)+p1x;
+  return [x,(p1y*(p2x-x)+p2y*(x-p1x))/(p2x-p1x)];
+}
+function lerpList(points,t){
+  if (points.length==1) {return points[0];}
+  var next=[];
+  for (var i=0,i<points.length-1,i++){
+    next.push(lerp(points[i],points[i+1],t))
+  }
+  return lerpList(next,t);
+}
