@@ -693,7 +693,7 @@ function lerp(p1,p2,t){
 function lerpList(points,t){
   if (points.length==1) {return points[0];}
   var next=[];
-  for (var i=0,i<points.length-1,i++){
+  for (var i=0;i<points.length-1;i++){
     next.push(lerp(points[i],points[i+1],t))
   }
   return lerpList(next,t);
