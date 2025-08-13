@@ -310,6 +310,9 @@ function findSplinePointAt(x,y){
     }
   }
 }
+function setSplinePoint(sp){
+  currentSplinePoint=sp;
+}
 canvas.onmousedown=function(event){
   var x=2*parseInt(event.offsetX);
   var y=2*parseInt(event.offsetY);
