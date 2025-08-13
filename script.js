@@ -351,7 +351,7 @@ canvas.onmousemove=function(event){
     currentBone["y"]=y;
     updateAllTextures();
   }
-  else if (isDraggingSplinePoint){
+  if (isDraggingSplinePoint){
     var r=Math.sqrt(Math.pow(x-currentSplinePoint["bone"]["x"],2)+Math.pow(y-currentSplinePoint["bone"]["y"],2))
     var theta=Math.atan2(y-currentSplinePoint["bone"]["y"],x-currentSplinePoint["bone"]["x"])
     document.getElementById("r").value=r;
