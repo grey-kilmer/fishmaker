@@ -329,7 +329,7 @@ canvas.onmousedown=function(event){
     if (splinePoint){
       setSplinePoint(splinePoint);
       updateAllTextures();
-      isDragginSplinePoint=true;
+      isDraggingSplinePoint=true;
       canvas.style.cursor="grabbing";
       return;
     }
