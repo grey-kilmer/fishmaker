@@ -568,7 +568,7 @@ function drawTextureOnCanvas(texture,canvas){
       context.restore();
     }
     if (texture==currentTexture){
-      for (var point of texture["point"]){
+      for (var point of texture["points"]){
         var width=10;
         if (point==currentPoint) {width=15}
         context.strokeRect(calculateX(point)-width,calculateY(point)-width,width*2,width*2);
