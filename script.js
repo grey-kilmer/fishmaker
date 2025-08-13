@@ -671,7 +671,7 @@ function createSplinePoint(){
     "bone":currentBone
   }
   currentPoint=newPoint;
-  currentTexture["points"].append(newPoint);
+  currentTexture["points"].push(newPoint);
   updateAllTextures();
 }
 function cartesify(p){
